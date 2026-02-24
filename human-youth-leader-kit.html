@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youth Leader Resource Kit — HUMAN Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --purple:#b15eff; --blue:#0b75f4; --yellow:#beef54;
+  --black:#1a1a1a;  --white:#ffffff; --off:#f5f3ff;
+  --border:#e4d9ff; --muted:#7a6b9a;
+  --r:6px; --rl:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6}
+
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:70px}
+.nav-logo{display:block;height:38px;width:auto}
+.nav-links{display:flex}
+.nav-links a{font-size:.82rem;font-weight:500;text-decoration:none;color:var(--muted);padding:8px 16px;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--purple)}
+.nav-links a.active{border-bottom-color:var(--purple)}
+.nav-cta{font-size:.8rem;font-weight:600;text-decoration:none;background:var(--purple);color:var(--white);padding:9px 18px;border-radius:var(--r);transition:opacity .15s}
+.nav-cta:hover{opacity:.8}
+
+/* ─── HERO ─── */
+#hero{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;padding:80px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(177,94,255,.04),rgba(11,117,244,.04))}
+.eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--border)}
+h1{font-size:clamp(2.8rem,5vw,4.4rem);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px}
+h1 em{font-style:italic;font-weight:300;color:var(--purple)}
+.hero-desc{font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:var(--r);font-size:.85rem;font-weight:600;font-family:inherit;text-decoration:none;border:none;cursor:pointer;transition:all .18s}
+.btn-purple{background:var(--purple);color:var(--white)}.btn-purple:hover{opacity:.85;transform:translateY(-1px)}
+.btn-blue{background:var(--blue);color:var(--white)}.btn-blue:hover{opacity:.85;transform:translateY(-1px)}
+.btn-yellow{background:var(--yellow);color:var(--black)}.btn-yellow:hover{opacity:.9;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--border)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+/* sidebar */
+.hero-card{background:linear-gradient(135deg,var(--purple),var(--blue));border-radius:var(--rl);overflow:hidden}
+.hc-head{padding:22px 28px 14px;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.15)}
+.hc-item{display:flex;align-items:center;gap:14px;padding:14px 28px;border-bottom:1px solid rgba(255,255,255,.1);text-decoration:none;color:rgba(255,255,255,.85);font-size:.87rem;font-weight:500;transition:background .15s}
+.hc-item:last-child{border-bottom:none}
+.hc-item:hover{background:rgba(255,255,255,.12);color:var(--white)}
+.hc-n{font-size:.65rem;font-weight:700;color:rgba(255,255,255,.35);min-width:20px}
+.hc-arr{margin-left:auto;color:rgba(255,255,255,.3);font-size:.75rem}
+
+/* ─── SECTIONS ─── */
+hr{border:none;border-top:1px solid var(--border)}
+.section{max-width:1080px;margin:0 auto;padding:72px 48px}
+h2{font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px}
+h2 em{font-style:italic;font-weight:300;color:var(--purple)}
+.lead{font-size:1rem;color:var(--muted);line-height:1.75;max-width:640px;margin-bottom:48px}
+
+/* ─── MODULE STRIP ─── */
+.mod-strip{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
+.mod-cell{background:var(--white);padding:26px 18px;transition:background .15s;position:relative}
+.mod-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--purple);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.mod-cell:hover{background:var(--off)}.mod-cell:hover::after{transform:scaleX(1)}
+.mc-n{font-size:.62rem;font-weight:700;color:var(--purple);opacity:.55;letter-spacing:.1em;margin-bottom:10px}
+.mc-t{font-weight:700;font-size:.88rem;margin-bottom:6px;line-height:1.3}
+.mc-d{font-size:.75rem;color:var(--muted);line-height:1.5}
+
+/* ─── ACCORDION ─── */
+.acc-wrap{border-top:1px solid var(--border)}
+.acc-item{border-bottom:1px solid var(--border)}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;transition:opacity .15s}
+.acc-head:hover{opacity:.65}
+.acc-head-t{font-weight:600;font-size:.97rem}
+.acc-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s}
+.acc-item.open .acc-icon{background:var(--purple);border-color:var(--purple);transform:rotate(45deg)}
+.acc-icon svg{width:11px;height:11px;stroke:var(--muted);stroke-width:2.5}
+.acc-item.open .acc-icon svg{stroke:white}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-inner{padding-bottom:24px;font-size:.92rem;color:var(--muted);line-height:1.8}
+
+/* ─── SKILLS ─── */
+.skills-2col{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.pills-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pill{border:1px solid var(--border);border-radius:var(--r);padding:11px 14px;font-size:.83rem;font-weight:500;display:flex;align-items:center;gap:10px;transition:all .15s;background:var(--white);cursor:default}
+.pill:hover{border-color:var(--purple);background:var(--off);color:var(--purple)}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:var(--purple);flex-shrink:0;transition:transform .2s}
+.pill:hover .pill-dot{transform:scale(1.6)}
+.quote-card{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white);border-radius:var(--rl);padding:40px}
+.quote-card blockquote{font-size:1.2rem;font-weight:300;font-style:italic;line-height:1.55;margin-bottom:24px}
+.quote-card cite{font-size:.72rem;color:rgba(255,255,255,.4);font-style:normal}
+
+/* ─── TABS ─── */
+.tabs-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:28px}
+.tab-btn{padding:11px 18px;font-size:.81rem;font-weight:600;border:none;background:none;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-family:inherit;transition:all .15s}
+.tab-btn:hover,.tab-btn.active{color:var(--purple)}
+.tab-btn.active{border-bottom-color:var(--purple)}
+.tab-panel{display:none}.tab-panel.active{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── STEPS ─── */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
+.step{background:var(--white);padding:22px 18px;transition:background .15s}
+.step:hover{background:var(--off)}
+.step-n{font-size:1.7rem;font-weight:900;color:rgba(177,94,255,.22);line-height:1;margin-bottom:10px}
+.step-t{font-weight:700;font-size:.86rem;margin-bottom:5px}
+.step-d{font-size:.77rem;color:var(--muted);line-height:1.55}
+
+/* ─── TRIO ─── */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px;margin-top:24px}
+.trio-cell{background:var(--white);padding:22px 18px}
+.trio-k{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.trio-t{font-weight:700;font-size:.88rem;margin-bottom:3px}
+.trio-d{font-size:.77rem;color:var(--muted)}
+
+/* ─── CALLOUT ─── */
+.callout{border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:var(--r);padding:16px 20px;background:var(--off);font-size:.87rem;color:var(--muted);line-height:1.7;margin-top:20px}
+.callout strong{color:var(--black)}.callout a{color:var(--purple)}
+
+/* ─── CARD GRID ─── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
+.c-card{background:var(--white);padding:26px 20px;transition:background .15s;position:relative}
+.c-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--purple);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.c-card:hover{background:var(--off)}.c-card:hover::before{transform:scaleX(1)}
+.cc-icon{font-size:1.5rem;margin-bottom:12px}
+.cc-t{font-weight:700;font-size:.88rem;margin-bottom:7px}
+.cc-d{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* ─── STORY BLOCK ─── */
+.story-block{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-top:40px}
+.sb-left{padding:44px}
+.sb-right{background:linear-gradient(160deg,rgba(177,94,255,.06),rgba(11,117,244,.06));border-left:1px solid var(--border);padding:44px;display:flex;flex-direction:column;gap:10px}
+.story-tag{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--r);padding:14px 16px}
+.st-t{font-weight:700;font-size:.88rem;margin-bottom:3px}
+.st-s{font-size:.78rem;color:var(--muted)}
+
+/* ─── PILLARS ─── */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px;margin-bottom:48px}
+.pillar{background:var(--white);padding:28px 20px;transition:all .2s;cursor:pointer}
+.pillar:hover{background:var(--off)}
+.pillar.active{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white)}
+.p-icon{font-size:1.7rem;margin-bottom:12px}
+.p-title{font-weight:700;font-size:.9rem;margin-bottom:7px;color:var(--purple);transition:color .2s}
+.pillar.active .p-title{color:rgba(255,255,255,.9)}
+.p-desc{font-size:.78rem;color:var(--muted);line-height:1.6;transition:color .2s}
+.pillar.active .p-desc{color:rgba(255,255,255,.7)}
+.p-hint{font-size:.68rem;font-weight:700;color:var(--purple);margin-top:10px;opacity:0;transition:opacity .2s;text-transform:uppercase;letter-spacing:.08em}
+.pillar:hover .p-hint{opacity:1}.pillar.active .p-hint{opacity:0}
+.pillar-panel{display:none;grid-column:1/-1;background:var(--off);border-top:1px solid var(--border);padding:28px 32px}
+.pillar-panel.open{display:block;animation:fadeUp .25s ease}
+.pillar-panel p{font-size:.9rem;color:var(--muted);line-height:1.8;max-width:680px}
+.pillar-panel button{margin-top:14px;font-size:.75rem;font-weight:600;color:var(--purple);cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.pillar-panel button:hover{text-decoration:underline}
+
+/* ─── NEEDS ─── */
+/* No overflow:hidden so tooltips aren't clipped */
+.needs{display:grid;grid-template-columns:repeat(3,1fr);background:var(--border);gap:1px;margin-bottom:48px;border:1px solid var(--border);border-radius:var(--rl)}
+.need{background:var(--white);padding:22px;text-align:center;transition:background .15s;cursor:default}
+.need:hover{background:rgba(177,94,255,.07)}
+.need:first-child{border-top-left-radius:calc(var(--rl) - 1px)}
+.need:nth-child(3){border-top-right-radius:calc(var(--rl) - 1px)}
+.need:nth-child(4){border-bottom-left-radius:calc(var(--rl) - 1px)}
+.need:last-child{border-bottom-right-radius:calc(var(--rl) - 1px)}
+.need-icon{font-size:1.4rem;margin-bottom:7px}
+.need-label{font-size:.83rem;font-weight:600}
+
+/* ─── FLOATING TOOLTIP ─── */
+#ftip{
+  position:fixed;z-index:9999;pointer-events:none;
+  background:var(--black);color:var(--white);
+  font-size:.78rem;line-height:1.6;font-family:'Inter',system-ui,sans-serif;
+  padding:12px 16px;border-radius:var(--r);width:220px;
+  box-shadow:0 6px 24px rgba(0,0,0,.22);
+  opacity:0;transition:opacity .15s;
+  top:-999px;left:-999px
+}
+#ftip.show{opacity:1}
+#ftip::after{content:'';position:absolute;top:100%;left:var(--ax,50%);transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--black)}
+
+/* ─── PROFILE GRID ─── */
+.prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:8px}
+.prof-btn{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px 12px;font-size:.82rem;font-weight:600;text-align:center;cursor:pointer;transition:all .18s;font-family:inherit;color:var(--black)}
+.prof-btn:hover{border-color:var(--blue);color:var(--blue);background:rgba(11,117,244,.04)}
+.prof-btn.active{background:var(--blue);color:var(--white);border-color:var(--blue)}
+.prof-detail{background:var(--off);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:32px;font-size:.9rem;color:var(--muted);line-height:1.8;display:none}
+.prof-detail.open{display:block;animation:fadeUp .25s ease}
+.prof-detail strong{color:var(--black)}
+
+/* ─── SCALE ─── */
+.scale{border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:48px}
+.scale-row{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.scale-row:last-child{border-bottom:none}
+.scale-row:hover{background:var(--off)}
+.scale-row.active{background:linear-gradient(90deg,rgba(177,94,255,.07),rgba(11,117,244,.05));border-left:3px solid var(--purple)}
+.sr-lbl{padding:18px 22px;font-weight:700;font-size:.84rem;background:var(--off);border-right:1px solid var(--border);color:var(--purple)}
+.scale-row.active .sr-lbl{background:transparent}
+.sr-desc{padding:18px 22px;font-size:.84rem;color:var(--muted);line-height:1.6}
+.sr-extra{display:none;grid-column:1/-1;padding:14px 22px 18px;font-size:.82rem;color:var(--muted);line-height:1.7;border-top:1px dashed var(--border)}
+.scale-row.active .sr-extra{display:block}
+
+/* ─── LIFECYCLE ─── */
+.lifecycle{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px;margin-bottom:0}
+.lc{background:var(--white);padding:26px 20px;cursor:pointer;transition:background .2s}
+.lc:hover:not(.active){background:var(--off)}
+.lc.active{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white)}
+.lc-n{font-size:2rem;font-weight:900;color:rgba(177,94,255,.2);line-height:1;margin-bottom:12px}
+.lc.active .lc-n{color:rgba(255,255,255,.18)}
+.lc-t{font-weight:700;font-size:.88rem;margin-bottom:6px}
+.lc-d{font-size:.78rem;color:var(--muted);line-height:1.6}
+.lc.active .lc-d{color:rgba(255,255,255,.6)}
+.lc-x{display:none;font-size:.77rem;margin-top:10px;padding-top:10px;border-top:1px solid rgba(177,94,255,.2);color:var(--muted);line-height:1.6}
+.lc.active .lc-x{display:block;color:rgba(255,255,255,.55);border-top-color:rgba(255,255,255,.2)}
+
+/* ─── ANNEXES ─── */
+.annex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
+.annex{background:var(--white);padding:30px 24px;cursor:pointer;transition:background .2s}
+.annex:hover,.annex.open{background:var(--off)}
+.ax-icon{font-size:1.7rem;margin-bottom:14px}
+.ax-t{font-weight:700;font-size:.92rem;margin-bottom:8px}
+.ax-d{font-size:.82rem;color:var(--muted);line-height:1.65}
+.ax-hint{font-size:.7rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.07em;margin-top:10px}
+.ax-more{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.82rem;color:var(--muted);line-height:1.7}
+.annex.open .ax-more{display:block;animation:fadeUp .25s ease}
+.ax-more ul{padding-left:18px;margin:8px 0 14px}
+.ax-more li{margin-bottom:4px}
+
+/* ─── MODAL ─── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(26,26,26,.55);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:24px}
+.overlay.open{display:flex}
+.modal{background:var(--white);border-radius:var(--rl);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.96) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-hd{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white);padding:28px 32px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.modal-hd h3{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+.modal-hd p{font-size:.85rem;color:rgba(255,255,255,.7);margin-top:4px}
+.modal-x{background:rgba(255,255,255,.15);border:none;color:var(--white);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.modal-x:hover{background:rgba(255,255,255,.3)}
+.modal-bd{padding:32px}
+.modal-bd h4{font-size:.9rem;font-weight:700;margin-bottom:8px}
+.modal-bd p,.modal-bd li{font-size:.88rem;color:var(--muted);line-height:1.75}
+.modal-bd ul{padding-left:18px;margin-bottom:16px}
+.modal-bd li{margin-bottom:4px}
+.step-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.step-row:last-child{border-bottom:none}
+.step-badge{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+.step-rc h5{font-size:.88rem;font-weight:700;margin-bottom:4px}
+.step-rc p{font-size:.82rem}
+.tip-box{background:var(--off);border-radius:var(--r);padding:16px 18px;font-size:.82rem;color:var(--muted);line-height:1.7;margin-top:16px}
+
+/* ─── EU / FOOTER ─── */
+.eu-bar{background:rgba(190,239,84,.1);border-top:1px solid rgba(190,239,84,.3);padding:28px 80px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.eu-bar img{height:40px;width:auto;flex-shrink:0}
+.eu-txt{font-size:.77rem;color:var(--muted);line-height:1.75;max-width:700px}
+.eu-txt p+p{margin-top:4px}
+footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(255,255,255,.7);padding:48px 80px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
+.f-logo{height:30px;width:auto;margin-bottom:14px;filter:brightness(0) invert(1);display:block}
+.f-tag{font-size:.82rem;line-height:1.7;max-width:380px}
+.f-copy{margin-top:20px;font-size:.69rem;color:rgba(255,255,255,.3)}
+.f-links{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.f-links a{font-size:.78rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+.f-links a:hover{color:white}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  nav{padding:0 20px}.nav-links{display:none}
+  #hero{grid-template-columns:1fr;padding:48px 24px}.hero-card{display:none}
+  .section{padding:52px 24px}
+  .mod-strip{grid-template-columns:1fr 1fr}
+  .skills-2col{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr 1fr}
+  .lifecycle{grid-template-columns:1fr 1fr}
+  .story-block{grid-template-columns:1fr}
+  .sb-right{border-left:none;border-top:1px solid var(--border)}
+  .trio{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr;padding:40px 24px}.f-links{align-items:flex-start}
+  .eu-bar{padding:28px 24px}
+}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://humanactivists.eu" target="_blank">
+    <img class="nav-logo" src="https://humanactivists.eu/wp-content/uploads/2024/12/HUMAN-logo-full-name.png" alt="HUMAN:">
+  </a>
+  <div class="nav-links">
+    <a href="#intro">Introduction</a>
+    <a href="#me">ME</a>
+    <a href="#others">ME &amp; Others</a>
+    <a href="#community">Community</a>
+    <a href="#annexes">Annexes</a>
+  </div>
+  <a class="nav-cta" href="https://humanactivists.eu/modules/" target="_blank">View HUMAN Modules ↗</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="eyebrow">HUMAN Project · CERV-2023-EQUAL · Youth Leader Resource Kit</div>
+    <h1>Youth Leader<br><em>Resource Kit</em></h1>
+    <p class="hero-desc">Unlock your potential to drive social impact in your community. This kit guides you from self-awareness to becoming a genuine changemaker — equipped to combat hate speech and build inclusive communities through digital activism.</p>
+    <div class="hero-btns">
+      <a href="#intro" class="btn btn-purple">Start the Journey ↓</a>
+      <a href="https://humanactivists.eu" target="_blank" class="btn btn-outline">humanactivists.eu ↗</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hc-head">Kit contents</div>
+    <a href="#intro" class="hc-item"><span class="hc-n">01</span><span>Introduction</span><span class="hc-arr">→</span></a>
+    <a href="#me" class="hc-item"><span class="hc-n">02</span><span>ME</span><span class="hc-arr">→</span></a>
+    <a href="#others" class="hc-item"><span class="hc-n">03</span><span>ME &amp; Others</span><span class="hc-arr">→</span></a>
+    <a href="#community" class="hc-item"><span class="hc-n">04</span><span>ME &amp; Community</span><span class="hc-arr">→</span></a>
+    <a href="#annexes" class="hc-item"><span class="hc-n">05</span><span>Annexes</span><span class="hc-arr">→</span></a>
+  </div>
+</section>
+
+<!-- ══ INTRODUCTION ══ -->
+<hr>
+<section class="section" id="intro">
+  <div class="eyebrow">What's in this kit?</div>
+  <h2>Every journey needs <em>a first step</em></h2>
+  <p class="lead">This kit is structured as a progressive journey — from understanding yourself as a young leader, to working with others, to creating lasting impact in your community.</p>
+
+  <div class="mod-strip reveal">
+    <div class="mod-cell"><div class="mc-n">01</div><div class="mc-t">Introduction</div><div class="mc-d">What is a changemaker? What does change mean? What is a Social Impact Project?</div></div>
+    <div class="mod-cell"><div class="mc-n">02</div><div class="mc-t">ME</div><div class="mc-d">Discover yourself as a young leader — leadership, emotional intelligence, self-confidence.</div></div>
+    <div class="mod-cell"><div class="mc-n">03</div><div class="mc-t">ME &amp; Others</div><div class="mc-d">Intercultural communication, co-creation, empathy, delegation and team building.</div></div>
+    <div class="mod-cell"><div class="mc-n">04</div><div class="mc-t">ME &amp; Community</div><div class="mc-d">Sense of belonging, needs analysis, SIP lifecycle and the importance of scale.</div></div>
+    <div class="mod-cell"><div class="mc-n">05</div><div class="mc-t">Annexes</div><div class="mc-d">Activities, rights &amp; duties, participation agreement and additional resources.</div></div>
+  </div>
+
+  <div style="margin-top:64px" class="reveal">
+    <div class="eyebrow">Core Concepts</div>
+    <h2 style="font-size:1.8rem;margin-bottom:32px">What you need to know <em>before you begin</em></h2>
+    <div class="acc-wrap">
+      <div class="acc-item open" id="acc1">
+        <div class="acc-head" onclick="toggleAcc('acc1')">
+          <span class="acc-head-t">Who is a "changemaker"?</span>
+          <span class="acc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg></span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">A changemaker is someone who identifies social problems and acts to solve them innovatively. You don't need to be famous or have significant resources — just the will to act and the ability to inspire others to join you. Young changemakers exist everywhere: in schools, neighbourhoods, youth groups and associations.</div></div>
+      </div>
+      <div class="acc-item" id="acc2">
+        <div class="acc-head" onclick="toggleAcc('acc2')">
+          <span class="acc-head-t">What does "change" mean?</span>
+          <span class="acc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg></span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">Social change begins with the awareness that something can be different — and better. It means questioning the status quo, proposing alternatives, and mobilising people. In the HUMAN context, change also means actively interrupting hate speech and building more inclusive communities, both online and offline.</div></div>
+      </div>
+      <div class="acc-item" id="acc3">
+        <div class="acc-head" onclick="toggleAcc('acc3')">
+          <span class="acc-head-t">What is a Social Impact Project (SIP)?</span>
+          <span class="acc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg></span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">A Social Impact Project (SIP) is an initiative designed to solve a concrete community problem, creating lasting positive value. It has clear objectives, involves the community in its design, and is both sustainable and measurable. Your SIP can be born from a simple observation — a moment when you noticed injustice, exclusion, or hate, and decided to do something about it.</div></div>
+      </div>
+      <div class="acc-item" id="acc4">
+        <div class="acc-head" onclick="toggleAcc('acc4')">
+          <span class="acc-head-t">Active participation of young people</span>
+          <span class="acc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg></span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">Active youth participation means not being merely a spectator of society, but an agent of change. It involves making decisions, taking on responsibilities, collaborating with others, and continuously learning. It is both a right and a duty of every young citizen.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ME ══ -->
+<hr>
+<section class="section" id="me">
+  <div class="eyebrow">Module 02 — Discover Yourself</div>
+  <h2>ME as a <em>young leader</em></h2>
+  <p class="lead">Youth leadership starts with you. <strong>Hover each competency</strong> to learn more.</p>
+
+  <div class="skills-2col reveal">
+    <div>
+      <p style="font-size:.82rem;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Core competencies</p>
+      <div class="pills-grid">
+        <div class="pill" data-tip="The ability to recognise, understand and manage your own emotions — and those of others. Essential for conflict resolution and empathetic leadership."><span class="pill-dot"></span>Emotional intelligence</div>
+        <div class="pill" data-tip="Truly hearing what others say — without interrupting or judging. Builds trust and helps you understand community needs deeply."><span class="pill-dot"></span>Active listening</div>
+        <div class="pill" data-tip="Believing in your own abilities and decisions. Without confidence, it is hard to inspire others or take initiative when it matters most."><span class="pill-dot"></span>Self-confidence</div>
+        <div class="pill" data-tip="Continuing despite setbacks. Social change rarely happens overnight — persistence is what keeps a project alive."><span class="pill-dot"></span>Persistence</div>
+        <div class="pill" data-tip="The inner drive that keeps you focused on your goals. Connecting your work to a deeper why sustains motivation even in difficult moments."><span class="pill-dot"></span>Motivation</div>
+        <div class="pill" data-tip="The capacity to recover quickly from difficulties. Youth leaders face rejection and failure — resilience turns those moments into growth."><span class="pill-dot"></span>Resilience</div>
+        <div class="pill" data-tip="Taking initiative before being asked. Proactive leaders identify what needs to happen and make it happen — without waiting for permission."><span class="pill-dot"></span>Proactivity</div>
+        <div class="pill" data-tip="Managing time, resources and people effectively. Good organisation transforms good intentions into concrete, measurable actions."><span class="pill-dot"></span>Organisation</div>
+        <div class="pill" data-tip="Questioning assumptions and analysing information before acting. In the age of misinformation, this is a core digital activism skill."><span class="pill-dot"></span>Critical thinking</div>
+        <div class="pill" data-tip="Adapting your plans when circumstances change. Flexible leaders find creative solutions rather than getting stuck when things go differently than planned."><span class="pill-dot"></span>Flexibility</div>
+      </div>
+    </div>
+    <div class="quote-card">
+      <blockquote>"Your involvement in a SIP will help you reveal your potential to become a changemaker — capable of turning ideas into real plans."</blockquote>
+      <cite>HUMAN Youth Leader Resource Kit</cite>
+    </div>
+  </div>
+
+  <div style="margin-top:56px" class="reveal">
+    <p style="font-size:.82rem;font-weight:700;margin-bottom:18px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Explore leadership concepts</p>
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab(this,'t-leadership')">What is Leadership?</button>
+      <button class="tab-btn" onclick="switchTab(this,'t-youth')">Youth Leadership</button>
+      <button class="tab-btn" onclick="switchTab(this,'t-start')">How to Start</button>
+    </div>
+    <div class="tab-panel active" id="t-leadership">
+      <p style="font-size:.95rem;color:var(--muted);line-height:1.8;max-width:620px;margin-bottom:0">Leadership is the ability to influence and inspire others to act towards a shared goal. It is not tied to a title — anyone can be a leader. Modern leadership values collaboration, empathy, and emotional intelligence above formal authority.</p>
+      <div class="trio">
+        <div class="trio-cell"><div class="trio-k">Foundation</div><div class="trio-t">🎯 Clear Vision</div><div class="trio-d">Knowing where you are going — and why</div></div>
+        <div class="trio-cell"><div class="trio-k">Skill</div><div class="trio-t">💬 Communication</div><div class="trio-d">Conveying ideas with clarity and purpose</div></div>
+        <div class="trio-cell"><div class="trio-k">Quality</div><div class="trio-t">❤️ Empathy</div><div class="trio-d">Understanding others' perspectives and needs</div></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="t-youth">
+      <p style="font-size:.95rem;color:var(--muted);line-height:1.8;max-width:620px">Youth leadership is the process through which young people develop skills to lead social change — finding your own voice, working in a team, managing projects, and inspiring others to act on issues like hate speech, discrimination, and exclusion.</p>
+      <div class="callout">💡 <strong>Hey, discover my story!</strong> — Explore real stories of young leaders already making a difference at <a href="https://humanactivists.eu" target="_blank">humanactivists.eu</a></div>
+    </div>
+    <div class="tab-panel" id="t-start">
+      <div class="steps-grid">
+        <div class="step"><div class="step-n">01</div><div class="step-t">Trust yourself</div><div class="step-d">Self-confidence is the foundation of any meaningful project</div></div>
+        <div class="step"><div class="step-n">02</div><div class="step-t">Develop your interest</div><div class="step-d">Deepen the topic that truly motivates and drives you</div></div>
+        <div class="step"><div class="step-n">03</div><div class="step-t">Build your story</div><div class="step-d">Create a powerful narrative to inspire and mobilise others</div></div>
+        <div class="step"><div class="step-n">04</div><div class="step-t">Create connections</div><div class="step-d">Networks and alliances multiply your impact</div></div>
+        <div class="step"><div class="step-n">05</div><div class="step-t">Communicate effectively</div><div class="step-d">Convey your message with clarity and enthusiasm</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ME & OTHERS ══ -->
+<hr>
+<section class="section" id="others">
+  <div class="eyebrow">Module 03 — Team &amp; Collaboration</div>
+  <h2>ME &amp; <em>Others</em></h2>
+  <p class="lead">Inspiring others, building a diverse team, and communicating effectively are essential capacities for any young leader tackling hate speech and structural racism.</p>
+
+  <div class="card-grid reveal">
+    <div class="c-card"><div class="cc-icon">🌐</div><div class="cc-t">Intercultural communication</div><div class="cc-d">Understanding and valuing cultural differences to communicate more effectively with people from diverse backgrounds.</div></div>
+    <div class="c-card"><div class="cc-icon">🔄</div><div class="cc-t">Co-creation</div><div class="cc-d">Involving all team members in the creative process to generate richer, more innovative solutions together.</div></div>
+    <div class="c-card"><div class="cc-icon">❤️</div><div class="cc-t">Empathy</div><div class="cc-d">Placing ourselves in others' shoes to understand their needs, perspectives, and emotions — a core hate interruption skill.</div></div>
+    <div class="c-card"><div class="cc-icon">📋</div><div class="cc-t">Delegation</div><div class="cc-d">Distributing tasks according to each member's skills and interests to maximise team effectiveness.</div></div>
+    <div class="c-card"><div class="cc-icon">👥</div><div class="cc-t">Team building</div><div class="cc-d">Defining roles, establishing norms, and creating an environment of mutual trust and respect.</div></div>
+  </div>
+
+  <div class="story-block reveal">
+    <div class="sb-left">
+      <div class="eyebrow" style="margin-bottom:10px">Storytelling for Change</div>
+      <h3 style="font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:14px">Build your powerful story</h3>
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:22px">A compelling story is a leader's most powerful tool. It connects emotionally, inspires action, and makes your project memorable.</p>
+      <button class="btn btn-purple" style="font-size:.78rem;padding:9px 16px" onclick="openModal('m-story')">How to build a powerful story →</button>
+    </div>
+    <div class="sb-right">
+      <div class="story-tag"><div class="st-t">✨ Your "why"</div><div class="st-s">The deep motivation behind your action</div></div>
+      <div class="story-tag"><div class="st-t">🎭 The challenge</div><div class="st-s">The problem you have identified and experienced</div></div>
+      <div class="story-tag"><div class="st-t">🌟 The transformation</div><div class="st-s">What changed because of your action</div></div>
+      <div class="story-tag"><div class="st-t">📣 The invitation</div><div class="st-s">How others can join your movement</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ME & COMMUNITY ══ -->
+<hr>
+<section class="section" id="community">
+  <div class="eyebrow">Module 04 — Social Impact</div>
+  <h2>ME &amp; the <em>Community</em></h2>
+  <p class="lead">Community is a central element of identity. <strong>Click each pillar</strong> to explore what it means for your work as a young leader.</p>
+
+  <div class="pillars reveal" id="pillars-wrap">
+    <div class="pillar" onclick="togglePillar('pp-community')"><div class="p-icon">🏘️</div><div class="p-title">Community</div><div class="p-desc">The group of people with whom you share a space, interests, or values</div><div class="p-hint">Click to explore ↓</div></div>
+    <div class="pillar" onclick="togglePillar('pp-solidarity')"><div class="p-icon">🤲</div><div class="p-title">Solidarity</div><div class="p-desc">The mutual support that unites the members of a community</div><div class="p-hint">Click to explore ↓</div></div>
+    <div class="pillar" onclick="togglePillar('pp-territory')"><div class="p-icon">📍</div><div class="p-title">Territory</div><div class="p-desc">The physical and symbolic space that defines the community</div><div class="p-hint">Click to explore ↓</div></div>
+    <div class="pillar" onclick="togglePillar('pp-belonging')"><div class="p-icon">💙</div><div class="p-title">Sense of Belonging</div><div class="p-desc">Feeling part of something larger than yourself — vital for inclusion</div><div class="p-hint">Click to explore ↓</div></div>
+    <div class="pillar-panel" id="pp-community"><p>Community is far more than a geographic location — it is a web of relationships, shared experiences, and common goals. As a young leader, your first task is to define who your community is: What do they have in common? What challenges do they face? What do they value? Communities contain multitudes of voices, especially those of diaspora and marginalised groups.</p><button onclick="closePillar('pp-community')">✕ Close</button></div>
+    <div class="pillar-panel" id="pp-solidarity"><p>Solidarity is the glue that holds communities together — especially in the face of hate and exclusion. Building solidarity means creating spaces where people feel supported, heard, and valued. It means standing up against discriminatory behaviour, amplifying marginalised voices, and refusing to be a bystander. In a digital world, solidarity can also be expressed through sharing counter-narratives and defending targets of online hate.</p><button onclick="closePillar('pp-solidarity')">✕ Close</button></div>
+    <div class="pillar-panel" id="pp-territory"><p>Territory refers both to physical spaces your community inhabits and to symbolic spaces where identity is formed — schools, online platforms, local squares, cultural centres. The digital space is also a territory — and one where hate speech is particularly prevalent. Understanding territory helps you identify where your Social Impact Project should operate.</p><button onclick="closePillar('pp-territory')">✕ Close</button></div>
+    <div class="pillar-panel" id="pp-belonging"><p>A sense of belonging — feeling genuinely part of a community — is a fundamental human need. When people feel they do not belong, they are more vulnerable to radicalisation, isolation, and harm. Fostering belonging means actively including people who are often excluded: newcomers, people from different cultural backgrounds, and those who face discrimination. The HUMAN project is built on the conviction that every young person deserves to belong.</p><button onclick="closePillar('pp-belonging')">✕ Close</button></div>
+  </div>
+
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Needs Analysis</p>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px"><strong>Hover each method</strong> for practical guidance</p>
+  <div class="needs reveal">
+    <div class="need" data-tip="Spend time in your community and observe — what do you see? Who is present? Who is absent? What tensions or needs become visible when you simply pay attention?"><div class="need-icon">👁️</div><div class="need-label">Observations</div></div>
+    <div class="need" data-tip="Have deep one-to-one conversations with community members. Prepare open questions, listen actively, and let their stories guide your understanding."><div class="need-icon">🎙️</div><div class="need-label">Interviews</div></div>
+    <div class="need" data-tip="Collect structured data from a wider group. Surveys help you spot patterns and validate what you have learned from observations and interviews."><div class="need-icon">📋</div><div class="need-label">Surveys</div></div>
+    <div class="need" data-tip="Identify what already works well in your community. Every community has assets — people, places, traditions, networks. Build on them rather than starting from scratch."><div class="need-icon">💪</div><div class="need-label">Strengths</div></div>
+    <div class="need" data-tip="Where are the unmet needs? What resources are missing? What groups are underserved? Identifying gaps helps you focus your SIP where it will have the most impact."><div class="need-icon">🔍</div><div class="need-label">Gaps</div></div>
+    <div class="need" data-tip="Map what is available — people with skills, funding, spaces, organisations, networks. Knowing your resources helps you design a realistic and sustainable project."><div class="need-icon">🎒</div><div class="need-label">Resources</div></div>
+  </div>
+
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Community Profile</p>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px"><strong>Click any dimension</strong> to understand it in depth</p>
+  <div class="prof-grid reveal">
+    <button class="prof-btn" onclick="toggleProf(this,'pf-define')">Define your community</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-assess')">Assess needs</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-data')">Collect data</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-relate')">Build relations</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-solve')">Identify a solution</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-territory')">Territory</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-population')">Population</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-values')">Attitudes &amp; Values</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-opps')">Opportunities</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-people')">Key People</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-challenges')">Challenges</button>
+    <button class="prof-btn" onclick="toggleProf(this,'pf-objectives')">Objectives</button>
+  </div>
+  <div class="prof-detail" id="pf-define"><strong>Define your community:</strong> Start by drawing the boundaries of your community. Is it geographic, demographic, or interest-based? Be specific — a well-defined community makes your SIP more focused and effective. Avoid assuming homogeneity — every community contains diverse voices.</div>
+  <div class="prof-detail" id="pf-assess"><strong>Assess needs:</strong> Use observations, interviews, and surveys to map what the community lacks. Distinguish between felt needs (what people say they want) and real needs (what analysis reveals). Both matter. Avoid imposing solutions from the outside — co-design with your community.</div>
+  <div class="prof-detail" id="pf-data"><strong>Collect data:</strong> Good data makes a stronger case for your project and helps you measure impact later. Combine qualitative data (stories, quotes) with quantitative data (numbers, statistics). Always be ethical — respect privacy and get consent before sharing people's stories.</div>
+  <div class="prof-detail" id="pf-relate"><strong>Build relations:</strong> Sustainable projects are built on trust. Before launching your SIP, invest time in building authentic relationships with community members, local organisations, and decision-makers. These relationships will support your project through its highs and lows.</div>
+  <div class="prof-detail" id="pf-solve"><strong>Identify a solution:</strong> Once you understand community needs and assets, brainstorm solutions collaboratively. A good SIP solution is specific, feasible, community-owned, and addresses root causes rather than just symptoms. Test your idea before committing fully.</div>
+  <div class="prof-detail" id="pf-territory"><strong>Territory:</strong> Understand the physical spaces your community uses — and which are inaccessible or unsafe for certain groups. Consider also the digital territory: which platforms do community members use, and where do they experience hate or exclusion?</div>
+  <div class="prof-detail" id="pf-population"><strong>Population:</strong> Who belongs to your community? What are the demographics — age, gender, cultural background, socioeconomic status? Understanding diversity within your community helps ensure your SIP genuinely includes those who need it most.</div>
+  <div class="prof-detail" id="pf-values"><strong>Attitudes &amp; Values:</strong> Every community has shared values, beliefs, and norms — some explicit, some unspoken. Understanding these helps you communicate your project in ways that resonate, and identify potential resistance or allies.</div>
+  <div class="prof-detail" id="pf-opps"><strong>Opportunities:</strong> What external factors could support your project? Upcoming events, funding calls, policy changes, media attention, or partnerships with other organisations? Staying aware of the wider context can help you grow your SIP's impact.</div>
+  <div class="prof-detail" id="pf-people"><strong>Key People:</strong> Identify community leaders, influencers, gatekeepers, and champions — people who can open doors, lend credibility, or help mobilise others. Building relationships with key people early is one of the most valuable things you can do.</div>
+  <div class="prof-detail" id="pf-challenges"><strong>Challenges:</strong> Be honest about the obstacles your project will face — lack of funding, community resistance, political barriers, your own capacity. Planning for challenges in advance makes your project more resilient and credible.</div>
+  <div class="prof-detail" id="pf-objectives"><strong>Objectives:</strong> Translate your goals into specific, measurable, achievable, relevant, and time-bound (SMART) objectives. Clear objectives help you stay on track, communicate your vision, and evaluate your impact at the end.</div>
+
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;margin-top:48px">The Importance of Scale</p>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px"><strong>Click each level</strong> to understand how it connects to your work</p>
+  <div class="scale reveal">
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🌍 Global</div>
+      <div class="sr-desc">Challenges affecting the whole planet — climate change, inequality, hate speech, structural racism
+        <div class="sr-extra">Global issues always have local manifestations. Structural racism shapes who gets hired, who faces hate online, in your own community. Your SIP can address a global issue at the local level, creating change that can be replicated elsewhere.</div>
+      </div>
+    </div>
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🗺️ Regional</div>
+      <div class="sr-desc">Problems shared by multiple communities across a region or country
+        <div class="sr-extra">Regional issues connect communities that might not otherwise collaborate. Understanding the regional dimension helps you identify potential partners and advocate for policy changes that go beyond a single neighbourhood.</div>
+      </div>
+    </div>
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🏘️ Community</div>
+      <div class="sr-desc">Specific issues in your neighbourhood, school or local group
+        <div class="sr-extra">This is where most SIPs start — and where impact is most visible and tangible. Community-level action allows you to build deep relationships, understand nuance, and create change that directly improves people's daily lives.</div>
+      </div>
+    </div>
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🧍 Individual</div>
+      <div class="sr-desc">The direct impact on each person's life — where everything starts
+        <div class="sr-extra">Ultimately, social change is about people. Behind every statistic is an individual whose life can be improved. Keeping the individual in focus keeps your project human, ethical, and grounded in real needs.</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Social Impact Project Lifecycle</p>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px"><strong>Click each phase</strong> for key questions and tips</p>
+  <div class="lifecycle reveal">
+    <div class="lc" onclick="toggleLc(this)">
+      <div class="lc-n">01</div><div class="lc-t">Start</div>
+      <div class="lc-d">Everything begins with an idea! Identify a problem and imagine a solution.</div>
+      <div class="lc-x">What problem am I solving? Who is affected? Why does it matter to me? Is there community support? Tip: Don't rush this phase — a well-chosen problem saves enormous effort later.</div>
+    </div>
+    <div class="lc" onclick="toggleLc(this)">
+      <div class="lc-n">02</div><div class="lc-t">Planning</div>
+      <div class="lc-d">Define objectives, resources, team and a detailed action plan.</div>
+      <div class="lc-x">What are my SMART objectives? Who is in my team? What resources do I need? What does success look like? Tip: Plan for things to go wrong — they will!</div>
+    </div>
+    <div class="lc active" onclick="toggleLc(this)">
+      <div class="lc-n">03</div><div class="lc-t">Implementation</div>
+      <div class="lc-d">Put the plan into practice, monitor progress and adapt when needed.</div>
+      <div class="lc-x">Are we on track? What is working and what is not? Are team members feeling supported? Regular check-ins with your team and community are essential — do not disappear into execution mode.</div>
+    </div>
+    <div class="lc" onclick="toggleLc(this)">
+      <div class="lc-n">04</div><div class="lc-t">Conclusion</div>
+      <div class="lc-d">Evaluate impact, celebrate results and share your learnings.</div>
+      <div class="lc-x">Did we achieve our objectives? What impact did we have? What would we do differently? Tip: Celebrate — even small wins deserve recognition. Then decide: does this project continue, scale, or hand over to the community?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ANNEXES ══ -->
+<hr>
+<section class="section" id="annexes">
+  <div class="eyebrow">Additional Resources</div>
+  <h2>Annexes &amp; <em>Materials</em></h2>
+  <p class="lead">Practical tools to deepen your learning. <strong>Click each card</strong> to see what is inside.</p>
+
+  <div class="annex-grid reveal">
+    <div class="annex" onclick="toggleAnnex(this)">
+      <div class="ax-icon">🎯</div>
+      <div class="ax-t">Activities for Young Leaders</div>
+      <div class="ax-d">Practical exercises and group dynamics to develop your leadership skills.</div>
+      <div class="ax-hint">Click to expand ↓</div>
+      <div class="ax-more">
+        A collection of hands-on activities for youth groups, including:
+        <ul>
+          <li>Icebreakers and community-building games</li>
+          <li>Debate and role-play on hate speech scenarios</li>
+          <li>Digital activism workshops (counter-narrative creation)</li>
+          <li>Needs analysis fieldwork exercises</li>
+          <li>Storytelling and public speaking practice</li>
+          <li>Team dynamics and conflict resolution simulations</li>
+        </ul>
+        <button class="btn btn-blue" style="font-size:.75rem;padding:8px 14px" onclick="event.stopPropagation();window.open('https://humanactivists.eu/modules/','_blank')">Explore HUMAN Modules ↗</button>
+      </div>
+    </div>
+    <div class="annex" onclick="toggleAnnex(this)">
+      <div class="ax-icon">📜</div>
+      <div class="ax-t">Rights &amp; Duties as Young Leaders</div>
+      <div class="ax-d">Know your rights as an active young citizen and the responsibilities that come with leadership.</div>
+      <div class="ax-hint">Click to expand ↓</div>
+      <div class="ax-more">
+        <strong style="color:var(--black)">Your rights include:</strong>
+        <ul>
+          <li>The right to participate in decisions that affect you</li>
+          <li>The right to a safe and inclusive environment</li>
+          <li>The right to access information and education</li>
+          <li>The right to express your views freely and safely</li>
+        </ul>
+        <strong style="color:var(--black)">Your duties include:</strong>
+        <ul>
+          <li>Respecting the rights and dignity of others</li>
+          <li>Acting with integrity and transparency</li>
+          <li>Being accountable to your community</li>
+          <li>Reporting hate speech and discriminatory behaviour</li>
+        </ul>
+      </div>
+    </div>
+    <div class="annex" onclick="toggleAnnex(this)">
+      <div class="ax-icon">✍️</div>
+      <div class="ax-t">Participation Agreement</div>
+      <div class="ax-d">A document that formalises your commitment to active participation.</div>
+      <div class="ax-hint">Click to expand ↓</div>
+      <div class="ax-more">
+        The agreement covers: your role and responsibilities, expected time commitment, values and code of conduct, confidentiality, and how conflicts will be handled.
+        <br><br>
+        <button class="btn btn-yellow" style="font-size:.75rem;padding:8px 14px" onclick="event.stopPropagation();openModal('m-agreement')">View sample agreement →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EU BAR -->
+<div class="eu-bar">
+  <img src="https://humanactivists.eu/wp-content/uploads/2024/12/EN-Co-Funded-by-the-EU_POS-300x63.png" alt="Co-funded by the European Union">
+  <div class="eu-txt">
+    <p>The HUMAN project has been co-financed by the EU CERV-2023-EQUAL programme. Its contents are the sole responsibility of its authors. The European Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
+    <p>Project: 101144478 — HUMAN — CERV-2023-EQUAL</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img class="f-logo" src="https://humanactivists.eu/wp-content/uploads/2024/12/HUMAN-logo-full-name.png" alt="HUMAN:">
+    <p class="f-tag">Digital Hate Interrupter Activism to combat structural racism promoting inter-community cooperation through digital technologies.</p>
+    <p class="f-copy">© 2026 All rights Reserved · Project: 101144478 — HUMAN — CERV-2023-EQUAL</p>
+  </div>
+  <div>
+    <div class="f-links">
+      <a href="https://humanactivists.eu/" target="_blank">humanactivists.eu ↗</a>
+      <a href="https://humanactivists.eu/about/" target="_blank">About</a>
+      <a href="https://humanactivists.eu/modules/" target="_blank">Learning Modules</a>
+      <a href="https://humanactivists.eu/wp-content/uploads/2026/02/D2.1-MANUAL_HUMAN_EN.pdf" target="_blank">Download Manual PDF</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL: Story building -->
+<div class="overlay" id="m-story" onclick="closeModalOutside(event,'m-story')">
+  <div class="modal">
+    <div class="modal-hd">
+      <div><h3>How to Build a Powerful Story</h3><p>The art of storytelling for changemakers</p></div>
+      <button class="modal-x" onclick="closeModal('m-story')">✕</button>
+    </div>
+    <div class="modal-bd">
+      <p style="margin-bottom:24px">A powerful story is not about you — it is about the change you want to see. It moves people from passive observers to active participants.</p>
+      <div class="step-row"><div class="step-badge">1</div><div class="step-rc"><h5>✨ Your "Why" — The call to action</h5><p>Start with the moment you realised something needed to change. Be specific and personal. "I was 16 when I saw..." is more powerful than broad statements about challenges young people face.</p></div></div>
+      <div class="step-row"><div class="step-badge">2</div><div class="step-rc"><h5>🎭 The Challenge — Name the problem</h5><p>Describe the problem clearly and honestly. Do not minimise it, but do not exaggerate either. Help your audience feel the weight of the issue without overwhelming them.</p></div></div>
+      <div class="step-row"><div class="step-badge">3</div><div class="step-rc"><h5>🌟 The Transformation — Show change is possible</h5><p>Share evidence that your approach works — a small pilot, a similar project elsewhere, or your own early results. Hope must be grounded in reality.</p></div></div>
+      <div class="step-row"><div class="step-badge">4</div><div class="step-rc"><h5>📣 The Invitation — Ask for something specific</h5><p>End with a clear, specific call to action. "Join us", "Share this", "Fund this", "Volunteer on Saturday". Vague asks get vague responses.</p></div></div>
+      <div class="tip-box">💡 <strong style="color:var(--black)">Tip:</strong> Practice your story out loud. Time it. Aim for 2–3 minutes for a pitch, 8–10 for a presentation. The best stories are the ones that have been told many times.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Participation agreement -->
+<div class="overlay" id="m-agreement" onclick="closeModalOutside(event,'m-agreement')">
+  <div class="modal">
+    <div class="modal-hd">
+      <div><h3>Sample Participation Agreement</h3><p>Youth Leader Resource Kit — HUMAN Project</p></div>
+      <button class="modal-x" onclick="closeModal('m-agreement')">✕</button>
+    </div>
+    <div class="modal-bd">
+      <p style="margin-bottom:20px">This agreement is made between the young leader and the facilitating organisation. It is a voluntary commitment built on mutual trust and respect.</p>
+      <h4 style="margin-bottom:8px">As a young leader, I commit to:</h4>
+      <ul>
+        <li>Participating actively and respectfully in all activities</li>
+        <li>Treating all participants with dignity, regardless of background</li>
+        <li>Completing agreed tasks to the best of my ability</li>
+        <li>Communicating openly if I have concerns or need support</li>
+        <li>Upholding the values of inclusion, anti-discrimination, and solidarity</li>
+        <li>Representing the project responsibly in my community</li>
+      </ul>
+      <h4 style="margin-bottom:8px">The organisation commits to:</h4>
+      <ul>
+        <li>Providing a safe and inclusive environment for all participants</li>
+        <li>Offering guidance, training, and resources throughout the project</li>
+        <li>Listening to and acting on participant feedback</li>
+        <li>Recognising and celebrating the contributions of young leaders</li>
+        <li>Respecting participant privacy and data protection rights</li>
+      </ul>
+      <div class="tip-box">This is a living document — it can be amended at any time by mutual agreement. The most important thing is that all parties feel genuinely committed to its spirit, not just its letter.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING TOOLTIP -->
+<div id="ftip"></div>
+
+<script>
+// ─── ACCORDION ───
+function toggleAcc(id) {
+  const item = document.getElementById(id);
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.acc-body').style.maxHeight = '0';
+  });
+  if (!wasOpen) {
+    item.classList.add('open');
+    const b = item.querySelector('.acc-body');
+    b.style.maxHeight = b.scrollHeight + 'px';
+  }
+}
+// open first on load
+(function(){ const b = document.querySelector('#acc1 .acc-body'); if(b) b.style.maxHeight = b.scrollHeight+'px'; })();
+
+// ─── TABS ───
+function switchTab(btn, id) {
+  const bar = btn.closest('.tabs-bar');
+  const wrap = bar.parentElement;
+  bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  wrap.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  wrap.querySelector('#' + id).classList.add('active');
+}
+
+// ─── PILLARS ───
+function togglePillar(id) {
+  const panel = document.getElementById(id);
+  const isOpen = panel.classList.contains('open');
+  document.querySelectorAll('.pillar-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.pillar').forEach(p => p.classList.remove('active'));
+  if (!isOpen) {
+    panel.classList.add('open');
+    const ids = ['pp-community','pp-solidarity','pp-territory','pp-belonging'];
+    const idx = ids.indexOf(id);
+    if (idx !== -1) document.querySelectorAll('.pillar')[idx].classList.add('active');
+    setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
+  }
+}
+function closePillar(id) {
+  document.getElementById(id).classList.remove('open');
+  document.querySelectorAll('.pillar').forEach(p => p.classList.remove('active'));
+}
+
+// ─── PROFILE BUTTONS ───
+function toggleProf(btn, id) {
+  const detail = document.getElementById(id);
+  const isOpen = detail.classList.contains('open');
+  document.querySelectorAll('.prof-detail').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.prof-btn').forEach(b => b.classList.remove('active'));
+  if (!isOpen) {
+    detail.classList.add('open');
+    btn.classList.add('active');
+    setTimeout(() => detail.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
+  }
+}
+
+// ─── SCALE ───
+function toggleScale(row) {
+  const isActive = row.classList.contains('active');
+  document.querySelectorAll('.scale-row').forEach(r => r.classList.remove('active'));
+  if (!isActive) row.classList.add('active');
+}
+
+// ─── LIFECYCLE ───
+function toggleLc(el) {
+  const isActive = el.classList.contains('active');
+  document.querySelectorAll('.lc').forEach(l => l.classList.remove('active'));
+  if (!isActive) el.classList.add('active');
+}
+
+// ─── ANNEXES ───
+function toggleAnnex(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.annex').forEach(a => a.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+
+// ─── MODALS ───
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function closeModalOutside(e, id) { if (e.target === e.currentTarget) closeModal(id); }
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.overlay.open').forEach(m => { m.classList.remove('open'); document.body.style.overflow=''; });
+  }
+});
+
+// ─── FLOATING TOOLTIP ───
+const ftip = document.getElementById('ftip');
+let tipTarget = null;
+
+function placeTip(el) {
+  const W = 220, GAP = 12;
+  const r = el.getBoundingClientRect();
+  let left = r.left + r.width / 2 - W / 2;
+  left = Math.max(8, Math.min(left, window.innerWidth - W - 8));
+  const top = r.top - ftip.offsetHeight - GAP;
+  ftip.style.left = left + 'px';
+  ftip.style.top = top + 'px';
+  const ax = Math.max(14, Math.min((r.left + r.width / 2) - left, W - 14));
+  ftip.style.setProperty('--ax', ax + 'px');
+}
+
+document.querySelectorAll('[data-tip]').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ftip.textContent = el.dataset.tip;
+    tipTarget = el;
+    // two rAFs: first renders text, second measures and positions
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      placeTip(el);
+      ftip.classList.add('show');
+    }));
+  });
+  el.addEventListener('mouseleave', () => {
+    ftip.classList.remove('show');
+    tipTarget = null;
+  });
+});
+
+window.addEventListener('scroll', () => { if (tipTarget) placeTip(tipTarget); }, { passive: true });
+
+// ─── NAV ACTIVE STATE ───
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, { passive: true });
+
+// ─── REVEAL ON SCROLL ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); observer.unobserve(e.target); }});
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
