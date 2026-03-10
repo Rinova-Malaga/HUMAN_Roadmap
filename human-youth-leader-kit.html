@@ -957,12 +957,16 @@ function toggleFullscreen() {
     label.textContent = 'Fullscreen';
   }
 }
-document.addEventListener('fullscreenchange', () => {
-  const isFs = !!document.fullscreenElement;
+function onFsChange() {
+  const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+  _shell.style.overflowY = isFs ? 'auto' : '';
   document.getElementById('fs-icon-expand').style.display = isFs ? 'none' : '';
   document.getElementById('fs-icon-shrink').style.display = isFs ? '' : 'none';
   document.getElementById('fs-label').textContent = isFs ? 'Exit' : 'Fullscreen';
-});
+}
+document.addEventListener('fullscreenchange', onFsChange);
+document.addEventListener('webkitfullscreenchange', onFsChange);
+document.addEventListener('mozfullscreenchange', onFsChange);
 
 
 function toggleAcc(id) {
@@ -1088,7 +1092,8 @@ document.querySelectorAll('[data-tip]').forEach(el => {
 
 // ─── SCROLL HELPERS (window + fullscreen container) ───
 const _shell = document.getElementById('app-shell');
-function getScrollY() { return document.fullscreenElement === _shell ? _shell.scrollTop : window.scrollY; }
+function getFsEl() { return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || null; }
+function getScrollY() { return getFsEl() === _shell ? _shell.scrollTop : window.scrollY; }
 function addScrollListener(fn) {
   window.addEventListener('scroll', fn, { passive: true });
   _shell.addEventListener('scroll', fn, { passive: true });
@@ -1108,7 +1113,7 @@ addScrollListener(() => {
 // ─── ANCHOR NAV IN FULLSCREEN ───
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    if (document.fullscreenElement === _shell) {
+    if (getFsEl() === _shell) {
       const target = document.querySelector(a.getAttribute('href'));
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     }
