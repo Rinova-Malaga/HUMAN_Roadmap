@@ -337,8 +337,6 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
   .people-grid{grid-template-columns:1fr 1fr}
   .journey-strip{grid-template-columns:1fr 1fr}
 }
-/* ─── FULLSCREEN ─── */
-#app-shell:fullscreen,#app-shell:-webkit-full-screen,#app-shell:-moz-full-screen{overflow-y:auto;height:100vh}
 </style>
 </head>
 <body>
@@ -938,14 +936,14 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
 <script>
 // ─── FULLSCREEN ───
 function toggleFullscreen() {
-  const shell = document.getElementById('app-shell') || document.documentElement;
+  const el = document.documentElement;
   const expandIcon = document.getElementById('fs-icon-expand');
   const shrinkIcon = document.getElementById('fs-icon-shrink');
   const label = document.getElementById('fs-label');
   const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
   if (!isFs) {
-    const req = shell.requestFullscreen || shell.webkitRequestFullscreen || shell.mozRequestFullScreen;
-    if (req) req.call(shell);
+    const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+    if (req) req.call(el);
     expandIcon.style.display = 'none';
     shrinkIcon.style.display = '';
     label.textContent = 'Exit';
@@ -1086,34 +1084,15 @@ document.querySelectorAll('[data-tip]').forEach(el => {
   });
 });
 
-// ─── SCROLL HELPERS (window + fullscreen container) ───
-const _shell = document.getElementById('app-shell');
-function getScrollY() { return document.fullscreenElement === _shell ? _shell.scrollTop : window.scrollY; }
-function addScrollListener(fn) {
-  window.addEventListener('scroll', fn, { passive: true });
-  _shell.addEventListener('scroll', fn, { passive: true });
-}
-
-addScrollListener(() => { if (tipTarget) placeTip(tipTarget); });
+window.addEventListener('scroll', () => { if (tipTarget) placeTip(tipTarget); }, { passive: true });
 
 // ─── NAV ACTIVE STATE ───
 const navAs = document.querySelectorAll('.nav-links a');
-addScrollListener(() => {
+window.addEventListener('scroll', () => {
   let cur = '';
-  const scrollY = getScrollY();
-  document.querySelectorAll('section[id]').forEach(s => { if (scrollY >= s.offsetTop - 90) cur = s.id; });
+  document.querySelectorAll('section[id]').forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
   navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-});
-
-// ─── ANCHOR NAV IN FULLSCREEN ───
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    if (document.fullscreenElement === _shell) {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-    }
-  });
-});
+}, { passive: true });
 
 // ─── REVEAL ON SCROLL ───
 const observer = new IntersectionObserver(entries => {
