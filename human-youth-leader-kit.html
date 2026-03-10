@@ -8,255 +8,266 @@
 <style>
 /* ─── TOKENS ─── */
 :root {
-  --purple:#b15eff; --blue:#0b75f4; --yellow:#beef54;
-  --black:#1a1a1a;  --white:#ffffff; --off:#f5f3ff;
-  --border:#e4d9ff; --muted:#7a6b9a;
+  --purple:#3d0f6b; --blue:#042a6b; --yellow:#beef54;
+  --black:#1a1a1a;  --white:#ffffff;
+  /* on-dark helpers */
+  --on-dark-muted:rgba(255,255,255,.65);
+  --on-dark-border:rgba(255,255,255,.18);
+  --on-dark-card:rgba(255,255,255,.10);
+  --on-dark-card-hover:rgba(255,255,255,.18);
+  /* section alternation — set per section */
+  --bg:var(--blue); --fg:var(--white); --muted:var(--on-dark-muted);
+  --border:var(--on-dark-border); --card:var(--on-dark-card);
   --r:6px; --rl:12px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--white);color:var(--white);font-size:16px;line-height:1.6}
+
+/* ─── SECTION COLOUR ALTERNATION ─── */
+#hero,#me,#community{background:var(--blue)}
+#intro,#others,#annexes{background:var(--purple)}
+hr{display:none}
 
 /* ─── NAV ─── */
-nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:70px}
+nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:2px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:70px}
 .nav-logo{display:block;height:38px;width:auto}
 .nav-links{display:flex}
-.nav-links a{font-size:.82rem;font-weight:500;text-decoration:none;color:var(--muted);padding:8px 16px;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.nav-links a{font-size:.82rem;font-weight:500;text-decoration:none;color:#555;padding:8px 16px;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
 .nav-links a:hover,.nav-links a.active{color:var(--purple)}
 .nav-links a.active{border-bottom-color:var(--purple)}
-.nav-cta{font-size:.8rem;font-weight:600;text-decoration:none;background:var(--purple);color:var(--white);padding:9px 18px;border-radius:var(--r);transition:opacity .15s}
-.nav-cta:hover{opacity:.8}
+.nav-cta{font-size:.8rem;font-weight:700;text-decoration:none;background:var(--yellow);color:var(--purple);padding:9px 18px;border-radius:var(--r);transition:opacity .15s}
+.nav-cta:hover{opacity:.85}
 
 /* ─── HERO ─── */
-#hero{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;padding:80px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(177,94,255,.04),rgba(11,117,244,.04))}
-.eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.eyebrow::before{content:'';width:20px;height:1px;background:var(--border)}
-h1{font-size:clamp(2.8rem,5vw,4.4rem);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px}
-h1 em{font-style:italic;font-weight:300;color:var(--purple)}
-.hero-desc{font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:32px}
+#hero{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;padding:80px 80px;border-bottom:none;background:var(--blue)}
+.eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82);display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.3)}
+h1{font-size:clamp(2.8rem,5vw,4.4rem);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:20px;color:var(--white)}
+h1 em{font-style:italic;font-weight:300;color:var(--yellow)}
+.hero-desc{font-size:1.05rem;color:#e8e8ff;line-height:1.75;max-width:520px;margin-bottom:32px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:var(--r);font-size:.85rem;font-weight:600;font-family:inherit;text-decoration:none;border:none;cursor:pointer;transition:all .18s}
-.btn-purple{background:var(--purple);color:var(--white)}.btn-purple:hover{opacity:.85;transform:translateY(-1px)}
-.btn-blue{background:var(--blue);color:var(--white)}.btn-blue:hover{opacity:.85;transform:translateY(-1px)}
-.btn-yellow{background:var(--yellow);color:var(--black)}.btn-yellow:hover{opacity:.9;transform:translateY(-1px)}
-.btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--border)}.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:var(--r);font-size:.85rem;font-weight:700;font-family:inherit;text-decoration:none;border:none;cursor:pointer;transition:all .18s}
+.btn-yellow{background:var(--yellow);color:var(--purple)}.btn-yellow:hover{opacity:.9;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4)}.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.1)}
+.btn-purple{background:var(--yellow);color:var(--purple)}.btn-purple:hover{opacity:.9;transform:translateY(-1px)}
+.btn-blue{background:var(--yellow);color:var(--purple)}.btn-blue:hover{opacity:.9;transform:translateY(-1px)}
 /* sidebar */
-.hero-card{background:linear-gradient(135deg,var(--purple),var(--blue));border-radius:var(--rl);overflow:hidden}
-.hc-head{padding:22px 28px 14px;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.15)}
-.hc-item{display:flex;align-items:center;gap:14px;padding:14px 28px;border-bottom:1px solid rgba(255,255,255,.1);text-decoration:none;color:rgba(255,255,255,.85);font-size:.87rem;font-weight:500;transition:background .15s}
+.hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;backdrop-filter:blur(4px)}
+.hc-head{padding:22px 28px 14px;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);border-bottom:1px solid rgba(255,255,255,.15)}
+.hc-item{display:flex;align-items:center;gap:14px;padding:14px 28px;border-bottom:1px solid rgba(255,255,255,.1);text-decoration:none;color:#e8e8ff;font-size:.87rem;font-weight:500;transition:background .15s}
 .hc-item:last-child{border-bottom:none}
 .hc-item:hover{background:rgba(255,255,255,.12);color:var(--white)}
-.hc-n{font-size:.65rem;font-weight:700;color:rgba(255,255,255,.35);min-width:20px}
+.hc-n{font-size:.65rem;font-weight:700;color:rgba(255,255,255,.3);min-width:20px}
 .hc-arr{margin-left:auto;color:rgba(255,255,255,.3);font-size:.75rem}
 
 /* ─── SECTIONS ─── */
-hr{border:none;border-top:1px solid var(--border)}
-.section{max-width:1080px;margin:0 auto;padding:72px 48px}
-h2{font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px}
-h2 em{font-style:italic;font-weight:300;color:var(--purple)}
-.lead{font-size:1rem;color:var(--muted);line-height:1.75;max-width:640px;margin-bottom:48px}
+.section{padding:72px 80px}
+h2{font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px;color:var(--white)}
+h2 em{font-style:italic;font-weight:300;color:var(--yellow)}
+.lead{font-size:1rem;color:#e8e8ff;line-height:1.75;max-width:640px;margin-bottom:48px}
 
 /* ─── MODULE STRIP ─── */
-.mod-strip{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
-.mod-cell{background:var(--white);padding:26px 18px;transition:background .15s;position:relative}
-.mod-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--purple);transform:scaleX(0);transform-origin:left;transition:transform .25s}
-.mod-cell:hover{background:var(--off)}.mod-cell:hover::after{transform:scaleX(1)}
-.mc-n{font-size:.62rem;font-weight:700;color:var(--purple);opacity:.55;letter-spacing:.1em;margin-bottom:10px}
-.mc-t{font-weight:700;font-size:.88rem;margin-bottom:6px;line-height:1.3}
-.mc-d{font-size:.75rem;color:var(--muted);line-height:1.5}
+.mod-strip{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.1);gap:1px}
+.mod-cell{background:rgba(255,255,255,.08);padding:26px 18px;transition:background .15s;position:relative}
+.mod-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.mod-cell:hover{background:rgba(255,255,255,.16)}.mod-cell:hover::after{transform:scaleX(1)}
+.mc-n{font-size:.62rem;font-weight:700;color:var(--yellow);opacity:.8;letter-spacing:.1em;margin-bottom:10px}
+.mc-t{font-weight:700;font-size:.88rem;margin-bottom:6px;line-height:1.3;color:var(--white)}
+.mc-d{font-size:.75rem;color:#dde0ff;line-height:1.5}
 
 /* ─── ACCORDION ─── */
-.acc-wrap{border-top:1px solid var(--border)}
-.acc-item{border-bottom:1px solid var(--border)}
+.acc-wrap{border-top:1px solid rgba(255,255,255,.2)}
+.acc-item{border-bottom:1px solid rgba(255,255,255,.2)}
 .acc-head{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;transition:opacity .15s}
-.acc-head:hover{opacity:.65}
-.acc-head-t{font-weight:600;font-size:.97rem}
-.acc-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s}
-.acc-item.open .acc-icon{background:var(--purple);border-color:var(--purple);transform:rotate(45deg)}
-.acc-icon svg{width:11px;height:11px;stroke:var(--muted);stroke-width:2.5}
-.acc-item.open .acc-icon svg{stroke:white}
+.acc-head:hover{opacity:.75}
+.acc-head-t{font-weight:600;font-size:.97rem;color:var(--white)}
+.acc-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s}
+.acc-item.open .acc-icon{background:var(--yellow);border-color:var(--yellow);transform:rotate(45deg)}
+.acc-icon svg{width:11px;height:11px;stroke:rgba(255,255,255,.7);stroke-width:2.5}
+.acc-item.open .acc-icon svg{stroke:var(--purple)}
 .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.acc-inner{padding-bottom:24px;font-size:.92rem;color:var(--muted);line-height:1.8}
+.acc-inner{padding-bottom:24px;font-size:.92rem;color:#e8e8ff;line-height:1.8}
 
 /* ─── SKILLS ─── */
 .skills-2col{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .pills-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.pill{border:1px solid var(--border);border-radius:var(--r);padding:11px 14px;font-size:.83rem;font-weight:500;display:flex;align-items:center;gap:10px;transition:all .15s;background:var(--white);cursor:default}
-.pill:hover{border-color:var(--purple);background:var(--off);color:var(--purple)}
-.pill-dot{width:5px;height:5px;border-radius:50%;background:var(--purple);flex-shrink:0;transition:transform .2s}
+.pill{border:1px solid rgba(255,255,255,.25);border-radius:var(--r);padding:11px 14px;font-size:.83rem;font-weight:500;display:flex;align-items:center;gap:10px;transition:all .15s;background:rgba(255,255,255,.08);cursor:default;color:var(--white)}
+.pill:hover{border-color:var(--yellow);background:rgba(255,255,255,.16);color:var(--yellow)}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);flex-shrink:0;transition:transform .2s}
 .pill:hover .pill-dot{transform:scale(1.6)}
-.quote-card{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white);border-radius:var(--rl);padding:40px}
-.quote-card blockquote{font-size:1.2rem;font-weight:300;font-style:italic;line-height:1.55;margin-bottom:24px}
-.quote-card cite{font-size:.72rem;color:rgba(255,255,255,.4);font-style:normal}
+.quote-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);padding:40px;backdrop-filter:blur(4px)}
+.quote-card blockquote{font-size:1.2rem;font-weight:300;font-style:italic;line-height:1.55;margin-bottom:24px;color:var(--white)}
+.quote-card cite{font-size:.72rem;color:rgba(255,255,255,.6);font-style:normal}
 
 /* ─── TABS ─── */
-.tabs-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:28px}
-.tab-btn{padding:11px 18px;font-size:.81rem;font-weight:600;border:none;background:none;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-family:inherit;transition:all .15s}
-.tab-btn:hover,.tab-btn.active{color:var(--purple)}
-.tab-btn.active{border-bottom-color:var(--purple)}
+.tabs-bar{display:flex;border-bottom:1px solid rgba(255,255,255,.2);margin-bottom:28px}
+.tab-btn{padding:11px 18px;font-size:.81rem;font-weight:600;border:none;background:none;cursor:pointer;color:rgba(255,255,255,.82);border-bottom:2px solid transparent;margin-bottom:-1px;font-family:inherit;transition:all .15s}
+.tab-btn:hover,.tab-btn.active{color:var(--white)}
+.tab-btn.active{border-bottom-color:var(--yellow)}
 .tab-panel{display:none}.tab-panel.active{display:block;animation:fadeUp .3s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* ─── STEPS ─── */
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
-.step{background:var(--white);padding:22px 18px;transition:background .15s}
-.step:hover{background:var(--off)}
-.step-n{font-size:1.7rem;font-weight:900;color:rgba(177,94,255,.22);line-height:1;margin-bottom:10px}
-.step-t{font-weight:700;font-size:.86rem;margin-bottom:5px}
-.step-d{font-size:.77rem;color:var(--muted);line-height:1.55}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.08);gap:1px}
+.step{background:rgba(255,255,255,.06);padding:22px 18px;transition:background .15s}
+.step:hover{background:rgba(255,255,255,.14)}
+.step-n{font-size:1.7rem;font-weight:900;color:rgba(255,255,255,.15);line-height:1;margin-bottom:10px}
+.step-t{font-weight:700;font-size:.86rem;margin-bottom:5px;color:var(--white)}
+.step-d{font-size:.77rem;color:#dde0ff;line-height:1.55}
 
 /* ─── TRIO ─── */
-.trio{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px;margin-top:24px}
-.trio-cell{background:var(--white);padding:22px 18px}
-.trio-k{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.trio-t{font-weight:700;font-size:.88rem;margin-bottom:3px}
-.trio-d{font-size:.77rem;color:var(--muted)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.08);gap:1px;margin-top:24px}
+.trio-cell{background:rgba(255,255,255,.06);padding:22px 18px}
+.trio-k{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:7px}
+.trio-t{font-weight:700;font-size:.88rem;margin-bottom:3px;color:var(--white)}
+.trio-d{font-size:.77rem;color:#dde0ff}
 
 /* ─── CALLOUT ─── */
-.callout{border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:var(--r);padding:16px 20px;background:var(--off);font-size:.87rem;color:var(--muted);line-height:1.7;margin-top:20px}
-.callout strong{color:var(--black)}.callout a{color:var(--purple)}
+.callout{border:1px solid rgba(255,255,255,.2);border-left:3px solid var(--yellow);border-radius:var(--r);padding:16px 20px;background:rgba(255,255,255,.08);font-size:.87rem;color:#e8e8ff;line-height:1.7;margin-top:20px}
+.callout strong{color:var(--white)}.callout a{color:var(--yellow)}
 
 /* ─── CARD GRID ─── */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
-.c-card{background:var(--white);padding:26px 20px;transition:background .15s;position:relative}
-.c-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--purple);transform:scaleX(0);transform-origin:left;transition:transform .22s}
-.c-card:hover{background:var(--off)}.c-card:hover::before{transform:scaleX(1)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.08);gap:1px}
+.c-card{background:rgba(255,255,255,.06);padding:26px 20px;transition:background .15s;position:relative}
+.c-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.c-card:hover{background:rgba(255,255,255,.14)}.c-card:hover::before{transform:scaleX(1)}
 .cc-icon{font-size:1.5rem;margin-bottom:12px}
-.cc-t{font-weight:700;font-size:.88rem;margin-bottom:7px}
-.cc-d{font-size:.78rem;color:var(--muted);line-height:1.6}
+.cc-t{font-weight:700;font-size:.88rem;margin-bottom:7px;color:var(--white)}
+.cc-d{font-size:.78rem;color:#e8e8ff;line-height:1.6}
 
 /* ─── STORY BLOCK ─── */
-.story-block{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-top:40px}
+.story-block{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;margin-top:40px}
 .sb-left{padding:44px}
-.sb-right{background:linear-gradient(160deg,rgba(177,94,255,.06),rgba(11,117,244,.06));border-left:1px solid var(--border);padding:44px;display:flex;flex-direction:column;gap:10px}
-.story-tag{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--r);padding:14px 16px}
-.st-t{font-weight:700;font-size:.88rem;margin-bottom:3px}
-.st-s{font-size:.78rem;color:var(--muted)}
+.sb-right{background:rgba(255,255,255,.08);border-left:1px solid rgba(255,255,255,.15);padding:44px;display:flex;flex-direction:column;gap:10px}
+.story-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-left:3px solid var(--yellow);border-radius:var(--r);padding:14px 16px}
+.st-t{font-weight:700;font-size:.88rem;margin-bottom:3px;color:var(--white)}
+.st-s{font-size:.78rem;color:#dde0ff}
 
 /* ─── PILLARS ─── */
-.pillars{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px;margin-bottom:48px}
-.pillar{background:var(--white);padding:28px 20px;transition:all .2s;cursor:pointer}
-.pillar:hover{background:var(--off)}
-.pillar.active{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white)}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.08);gap:1px;margin-bottom:48px}
+.pillar{background:rgba(255,255,255,.06);padding:28px 20px;transition:all .2s;cursor:pointer}
+.pillar:hover{background:rgba(255,255,255,.14)}
+.pillar.active{background:var(--yellow)}
 .p-icon{font-size:1.7rem;margin-bottom:12px}
-.p-title{font-weight:700;font-size:.9rem;margin-bottom:7px;color:var(--purple);transition:color .2s}
-.pillar.active .p-title{color:rgba(255,255,255,.9)}
-.p-desc{font-size:.78rem;color:var(--muted);line-height:1.6;transition:color .2s}
-.pillar.active .p-desc{color:rgba(255,255,255,.7)}
-.p-hint{font-size:.68rem;font-weight:700;color:var(--purple);margin-top:10px;opacity:0;transition:opacity .2s;text-transform:uppercase;letter-spacing:.08em}
+.p-title{font-weight:700;font-size:.9rem;margin-bottom:7px;color:var(--yellow);transition:color .2s}
+.pillar.active .p-title{color:var(--purple)}
+.p-desc{font-size:.78rem;color:#e8e8ff;line-height:1.6;transition:color .2s}
+.pillar.active .p-desc{color:rgba(80,0,120,.8)}
+.p-hint{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.75);margin-top:10px;opacity:0;transition:opacity .2s;text-transform:uppercase;letter-spacing:.08em}
 .pillar:hover .p-hint{opacity:1}.pillar.active .p-hint{opacity:0}
-.pillar-panel{display:none;grid-column:1/-1;background:var(--off);border-top:1px solid var(--border);padding:28px 32px}
+.pillar-panel{display:none;grid-column:1/-1;background:rgba(255,255,255,.1);border-top:1px solid rgba(255,255,255,.15);padding:28px 32px}
 .pillar-panel.open{display:block;animation:fadeUp .25s ease}
-.pillar-panel p{font-size:.9rem;color:var(--muted);line-height:1.8;max-width:680px}
-.pillar-panel button{margin-top:14px;font-size:.75rem;font-weight:600;color:var(--purple);cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.pillar-panel p{font-size:.9rem;color:#e8e8ff;line-height:1.8;max-width:680px}
+.pillar-panel button{margin-top:14px;font-size:.75rem;font-weight:600;color:var(--yellow);cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
 .pillar-panel button:hover{text-decoration:underline}
 
 /* ─── NEEDS ─── */
-/* No overflow:hidden so tooltips aren't clipped */
-.needs{display:grid;grid-template-columns:repeat(3,1fr);background:var(--border);gap:1px;margin-bottom:48px;border:1px solid var(--border);border-radius:var(--rl)}
-.need{background:var(--white);padding:22px;text-align:center;transition:background .15s;cursor:default}
-.need:hover{background:rgba(177,94,255,.07)}
+.needs{display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.08);gap:1px;margin-bottom:48px;border:1px solid rgba(255,255,255,.2);border-radius:var(--rl)}
+.need{background:rgba(255,255,255,.06);padding:22px;text-align:center;transition:background .15s;cursor:default}
+.need:hover{background:rgba(255,255,255,.16)}
 .need:first-child{border-top-left-radius:calc(var(--rl) - 1px)}
 .need:nth-child(3){border-top-right-radius:calc(var(--rl) - 1px)}
 .need:nth-child(4){border-bottom-left-radius:calc(var(--rl) - 1px)}
 .need:last-child{border-bottom-right-radius:calc(var(--rl) - 1px)}
 .need-icon{font-size:1.4rem;margin-bottom:7px}
-.need-label{font-size:.83rem;font-weight:600}
+.need-label{font-size:.83rem;font-weight:600;color:var(--white)}
 
 /* ─── FLOATING TOOLTIP ─── */
 #ftip{
   position:fixed;z-index:9999;pointer-events:none;
-  background:var(--black);color:var(--white);
+  background:var(--yellow);color:var(--purple);
   font-size:.78rem;line-height:1.6;font-family:'Inter',system-ui,sans-serif;
-  padding:12px 16px;border-radius:var(--r);width:220px;
-  box-shadow:0 6px 24px rgba(0,0,0,.22);
+  padding:12px 16px;border-radius:var(--r);width:220px;font-weight:600;
+  box-shadow:0 6px 24px rgba(0,0,0,.3);
   opacity:0;transition:opacity .15s;
   top:-999px;left:-999px
 }
 #ftip.show{opacity:1}
-#ftip::after{content:'';position:absolute;top:100%;left:var(--ax,50%);transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--black)}
+#ftip::after{content:'';position:absolute;top:100%;left:var(--ax,50%);transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--yellow)}
 
 /* ─── PROFILE GRID ─── */
 .prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:8px}
-.prof-btn{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px 12px;font-size:.82rem;font-weight:600;text-align:center;cursor:pointer;transition:all .18s;font-family:inherit;color:var(--black)}
-.prof-btn:hover{border-color:var(--blue);color:var(--blue);background:rgba(11,117,244,.04)}
-.prof-btn.active{background:var(--blue);color:var(--white);border-color:var(--blue)}
-.prof-detail{background:var(--off);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:32px;font-size:.9rem;color:var(--muted);line-height:1.8;display:none}
+.prof-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:14px 12px;font-size:.82rem;font-weight:600;text-align:center;cursor:pointer;transition:all .18s;font-family:inherit;color:var(--white)}
+.prof-btn:hover{border-color:var(--yellow);color:var(--yellow);background:rgba(255,255,255,.14)}
+.prof-btn.active{background:var(--yellow);color:var(--purple);border-color:var(--yellow)}
+.prof-detail{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:20px 24px;margin-bottom:32px;font-size:.9rem;color:#e8e8ff;line-height:1.8;display:none}
 .prof-detail.open{display:block;animation:fadeUp .25s ease}
-.prof-detail strong{color:var(--black)}
+.prof-detail strong{color:var(--white)}
 
 /* ─── SCALE ─── */
-.scale{border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:48px}
-.scale-row{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.scale{border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;margin-bottom:48px}
+.scale-row{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid rgba(255,255,255,.15);cursor:pointer;transition:background .15s}
 .scale-row:last-child{border-bottom:none}
-.scale-row:hover{background:var(--off)}
-.scale-row.active{background:linear-gradient(90deg,rgba(177,94,255,.07),rgba(11,117,244,.05));border-left:3px solid var(--purple)}
-.sr-lbl{padding:18px 22px;font-weight:700;font-size:.84rem;background:var(--off);border-right:1px solid var(--border);color:var(--purple)}
+.scale-row:hover{background:rgba(255,255,255,.08)}
+.scale-row.active{background:rgba(255,255,255,.12);border-left:3px solid var(--yellow)}
+.sr-lbl{padding:18px 22px;font-weight:700;font-size:.84rem;background:rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.15);color:var(--yellow)}
 .scale-row.active .sr-lbl{background:transparent}
-.sr-desc{padding:18px 22px;font-size:.84rem;color:var(--muted);line-height:1.6}
-.sr-extra{display:none;grid-column:1/-1;padding:14px 22px 18px;font-size:.82rem;color:var(--muted);line-height:1.7;border-top:1px dashed var(--border)}
+.sr-desc{padding:18px 22px;font-size:.84rem;color:#e8e8ff;line-height:1.6}
+.sr-extra{display:none;grid-column:1/-1;padding:14px 22px 18px;font-size:.82rem;color:#e8e8ff;line-height:1.7;border-top:1px dashed rgba(255,255,255,.2)}
 .scale-row.active .sr-extra{display:block}
 
 /* ─── LIFECYCLE ─── */
-.lifecycle{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px;margin-bottom:0}
-.lc{background:var(--white);padding:26px 20px;cursor:pointer;transition:background .2s}
-.lc:hover:not(.active){background:var(--off)}
-.lc.active{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white)}
-.lc-n{font-size:2rem;font-weight:900;color:rgba(177,94,255,.2);line-height:1;margin-bottom:12px}
-.lc.active .lc-n{color:rgba(255,255,255,.18)}
-.lc-t{font-weight:700;font-size:.88rem;margin-bottom:6px}
-.lc-d{font-size:.78rem;color:var(--muted);line-height:1.6}
-.lc.active .lc-d{color:rgba(255,255,255,.6)}
-.lc-x{display:none;font-size:.77rem;margin-top:10px;padding-top:10px;border-top:1px solid rgba(177,94,255,.2);color:var(--muted);line-height:1.6}
-.lc.active .lc-x{display:block;color:rgba(255,255,255,.55);border-top-color:rgba(255,255,255,.2)}
+.lifecycle{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.08);gap:1px;margin-bottom:0}
+.lc{background:rgba(255,255,255,.06);padding:26px 20px;cursor:pointer;transition:background .2s}
+.lc:hover:not(.active){background:rgba(255,255,255,.14)}
+.lc.active{background:var(--yellow)}
+.lc-n{font-size:2rem;font-weight:900;color:rgba(255,255,255,.15);line-height:1;margin-bottom:12px}
+.lc.active .lc-n{color:rgba(80,0,120,.2)}
+.lc-t{font-weight:700;font-size:.88rem;margin-bottom:6px;color:var(--white)}
+.lc.active .lc-t{color:var(--purple)}
+.lc-d{font-size:.78rem;color:#dde0ff;line-height:1.6}
+.lc.active .lc-d{color:rgba(80,0,120,.75)}
+.lc-x{display:none;font-size:.77rem;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.2);color:#dde0ff;line-height:1.6}
+.lc.active .lc-x{display:block;color:rgba(80,0,120,.7);border-top-color:rgba(80,0,120,.2)}
 
 /* ─── ANNEXES ─── */
-.annex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--border);gap:1px}
-.annex{background:var(--white);padding:30px 24px;cursor:pointer;transition:background .2s}
-.annex:hover,.annex.open{background:var(--off)}
+.annex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.08);gap:1px}
+.annex{background:rgba(255,255,255,.06);padding:30px 24px;cursor:pointer;transition:background .2s}
+.annex:hover,.annex.open{background:rgba(255,255,255,.16)}
 .ax-icon{font-size:1.7rem;margin-bottom:14px}
-.ax-t{font-weight:700;font-size:.92rem;margin-bottom:8px}
-.ax-d{font-size:.82rem;color:var(--muted);line-height:1.65}
-.ax-hint{font-size:.7rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.07em;margin-top:10px}
-.ax-more{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.82rem;color:var(--muted);line-height:1.7}
+.ax-t{font-weight:700;font-size:.92rem;margin-bottom:8px;color:var(--white)}
+.ax-d{font-size:.82rem;color:#e8e8ff;line-height:1.65}
+.ax-hint{font-size:.7rem;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:.07em;margin-top:10px}
+.ax-more{display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2);font-size:.82rem;color:#e8e8ff;line-height:1.7}
 .annex.open .ax-more{display:block;animation:fadeUp .25s ease}
 .ax-more ul{padding-left:18px;margin:8px 0 14px}
 .ax-more li{margin-bottom:4px}
 
 /* ─── MODAL ─── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(26,26,26,.55);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:24px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(26,26,26,.7);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:24px}
 .overlay.open{display:flex}
-.modal{background:var(--white);border-radius:var(--rl);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);animation:modalIn .25s ease}
+.modal{background:var(--white);border-radius:var(--rl);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:modalIn .25s ease}
 @keyframes modalIn{from{opacity:0;transform:scale(.96) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-hd{background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white);padding:28px 32px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.modal-hd h3{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
-.modal-hd p{font-size:.85rem;color:rgba(255,255,255,.7);margin-top:4px}
+.modal-hd{background:var(--blue);color:var(--white);padding:28px 32px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.modal-hd h3{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:var(--white)}
+.modal-hd p{font-size:.85rem;color:#e8e8ff;margin-top:4px}
 .modal-x{background:rgba(255,255,255,.15);border:none;color:var(--white);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .modal-x:hover{background:rgba(255,255,255,.3)}
 .modal-bd{padding:32px}
-.modal-bd h4{font-size:.9rem;font-weight:700;margin-bottom:8px}
-.modal-bd p,.modal-bd li{font-size:.88rem;color:var(--muted);line-height:1.75}
+.modal-bd h4{font-size:.9rem;font-weight:700;margin-bottom:8px;color:var(--black)}
+.modal-bd p,.modal-bd li{font-size:.88rem;color:#555;line-height:1.75}
 .modal-bd ul{padding-left:18px;margin-bottom:16px}
 .modal-bd li{margin-bottom:4px}
-.step-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.step-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid #eee}
 .step-row:last-child{border-bottom:none}
-.step-badge{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
-.step-rc h5{font-size:.88rem;font-weight:700;margin-bottom:4px}
-.step-rc p{font-size:.82rem}
-.tip-box{background:var(--off);border-radius:var(--r);padding:16px 18px;font-size:.82rem;color:var(--muted);line-height:1.7;margin-top:16px}
+.step-badge{width:32px;height:32px;border-radius:50%;background:var(--purple);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+.step-rc h5{font-size:.88rem;font-weight:700;margin-bottom:4px;color:var(--black)}
+.step-rc p{font-size:.82rem;color:#555}
+.tip-box{background:#f8f5ff;border-radius:var(--r);padding:16px 18px;font-size:.82rem;color:#555;line-height:1.7;margin-top:16px}
 
 /* ─── EU / FOOTER ─── */
-.eu-bar{background:rgba(190,239,84,.1);border-top:1px solid rgba(190,239,84,.3);padding:28px 80px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.eu-bar{background:#fff;border-top:3px solid var(--yellow);padding:28px 80px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap}
 .eu-bar img{height:40px;width:auto;flex-shrink:0}
-.eu-txt{font-size:.77rem;color:var(--muted);line-height:1.75;max-width:700px}
+.eu-txt{font-size:.77rem;color:#555;line-height:1.75;max-width:700px}
 .eu-txt p+p{margin-top:4px}
-footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(255,255,255,.7);padding:48px 80px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
-.f-logo{height:30px;width:auto;margin-bottom:14px;filter:brightness(0) invert(1);display:block}
-.f-tag{font-size:.82rem;line-height:1.7;max-width:380px}
-.f-copy{margin-top:20px;font-size:.69rem;color:rgba(255,255,255,.3)}
+footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;border-top:1px solid #eee}
+.f-logo{height:30px;width:auto;margin-bottom:14px;display:block}
+.f-tag{font-size:.82rem;line-height:1.7;max-width:380px;color:#555}
+.f-copy{margin-top:20px;font-size:.69rem;color:#aaa}
 .f-links{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-.f-links a{font-size:.78rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
-.f-links a:hover{color:white}
+.f-links a{font-size:.78rem;color:#888;text-decoration:none;transition:color .15s}
+.f-links a:hover{color:var(--purple)}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:960px){
@@ -268,7 +279,7 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
   .pillars{grid-template-columns:1fr 1fr}
   .lifecycle{grid-template-columns:1fr 1fr}
   .story-block{grid-template-columns:1fr}
-  .sb-right{border-left:none;border-top:1px solid var(--border)}
+  .sb-right{border-left:none;border-top:1px solid rgba(255,255,255,.15)}
   .trio{grid-template-columns:1fr}
   footer{grid-template-columns:1fr;padding:40px 24px}.f-links{align-items:flex-start}
   .eu-bar{padding:28px 24px}
@@ -277,9 +288,59 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
 /* ─── REVEAL ─── */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .reveal.on{opacity:1;transform:translateY(0)}
+
+/* ─── EMBED / FULLSCREEN ─── */
+.nav-fs{background:none;border:1.5px solid #ddd;border-radius:var(--r);padding:7px 10px;cursor:pointer;color:#555;font-size:.75rem;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:6px;transition:all .15s;margin-left:10px;white-space:nowrap}
+.nav-fs:hover{border-color:var(--purple);color:var(--purple)}
+.nav-fs svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+/* New content components */
+.people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.1);margin-bottom:48px}
+.person-card{background:rgba(255,255,255,.07);padding:28px 22px;transition:background .2s;position:relative}
+.person-card:hover{background:rgba(255,255,255,.15)}
+.person-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.person-card:hover::after{transform:scaleX(1)}
+.pc-avatar{width:52px;height:52px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+.pc-name{font-weight:800;font-size:.95rem;color:var(--white);margin-bottom:4px}
+.pc-role{font-size:.72rem;font-weight:600;color:var(--yellow);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.pc-desc{font-size:.8rem;color:#e8e8ff;line-height:1.65}
+.journey-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.1);margin-bottom:48px}
+.journey-step{background:rgba(255,255,255,.07);padding:24px 18px;transition:background .2s}
+.journey-step:hover{background:rgba(255,255,255,.15)}
+.js-num{font-size:2rem;font-weight:900;color:rgba(255,255,255,.1);line-height:1;margin-bottom:8px}
+.js-title{font-weight:700;font-size:.88rem;color:var(--white);margin-bottom:6px}
+.js-desc{font-size:.76rem;color:#dde0ff;line-height:1.55}
+.inspire-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.1);margin-bottom:48px}
+.inspire-cell{background:rgba(255,255,255,.07);padding:30px 26px;transition:background .2s}
+.inspire-cell:hover{background:rgba(255,255,255,.14)}
+.ic-num{font-size:.62rem;font-weight:700;color:var(--yellow);letter-spacing:.12em;margin-bottom:10px;text-transform:uppercase}
+.ic-title{font-weight:800;font-size:1rem;color:var(--white);margin-bottom:10px;line-height:1.2}
+.ic-desc{font-size:.84rem;color:#e8e8ff;line-height:1.7}
+.ic-example{margin-top:14px;padding:12px 14px;background:rgba(255,255,255,.08);border-left:3px solid var(--yellow);border-radius:4px;font-size:.78rem;color:#dde0ff;line-height:1.6;font-style:italic}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.1)}
+.tip-card{background:rgba(255,255,255,.07);padding:26px 22px;transition:background .2s}
+.tip-card:hover{background:rgba(255,255,255,.14)}
+.tip-emoji{font-size:1.6rem;margin-bottom:12px}
+.tip-title{font-weight:700;font-size:.9rem;color:var(--yellow);margin-bottom:8px}
+.tip-body{font-size:.82rem;color:#e8e8ff;line-height:1.7}
+.belonging-block{display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid rgba(255,255,255,.2);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.1);margin-bottom:48px}
+.bb-cell{background:rgba(255,255,255,.07);padding:32px 26px}
+.bb-cell.highlight{background:rgba(190,239,84,.1);border-left:3px solid var(--yellow)}
+.bb-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
+.bb-title{font-weight:800;font-size:1.05rem;color:var(--white);margin-bottom:12px}
+.bb-body{font-size:.84rem;color:#e8e8ff;line-height:1.75}
+.bb-list{list-style:none;padding:0;margin-top:12px}
+.bb-list li{font-size:.82rem;color:#e8e8ff;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.bb-list li::before{content:'→';color:var(--yellow);flex-shrink:0;font-weight:700}
+@media(max-width:960px){
+  .inspire-grid{grid-template-columns:1fr}
+  .belonging-block{grid-template-columns:1fr}
+  .people-grid{grid-template-columns:1fr 1fr}
+  .journey-strip{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
+<div id="app-shell">
 
 <!-- NAV -->
 <nav>
@@ -293,7 +354,14 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
     <a href="#community">Community</a>
     <a href="#annexes">Annexes</a>
   </div>
-  <a class="nav-cta" href="https://humanactivists.eu/modules/" target="_blank">View HUMAN Modules ↗</a>
+  <div style="display:flex;align-items:center;gap:8px">
+    <a class="nav-cta" href="https://humanactivists.eu/modules/" target="_blank">View HUMAN Modules ↗</a>
+    <button class="nav-fs" onclick="toggleFullscreen()" id="fs-btn" title="Fullscreen">
+      <svg id="fs-icon-expand" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+      <svg id="fs-icon-shrink" viewBox="0 0 24 24" style="display:none"><path d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3m0 18v-3a2 2 0 012-2h3M3 16h3a2 2 0 012 2v3"/></svg>
+      <span id="fs-label">Fullscreen</span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -366,6 +434,38 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
       </div>
     </div>
   </div>
+
+  <div style="margin-top:64px" class="reveal">
+    <div class="eyebrow">Young Changemakers in Action</div>
+    <h2 style="font-size:1.8rem;margin-bottom:12px">They started just <em>like you</em></h2>
+    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">Every changemaker began with a single moment of decision. Here are four young leaders who turned personal experience into community impact.</p>
+    <div class="people-grid">
+      <div class="person-card">
+        <div class="pc-avatar">🎤</div>
+        <div class="pc-name">Amara, 22</div>
+        <div class="pc-role">Counter-Narrative Creator</div>
+        <div class="pc-desc">After experiencing racist comments online, Amara launched a social media campaign amplifying diaspora voices. Within three months, her counter-narratives reached over 40,000 people.</div>
+      </div>
+      <div class="person-card">
+        <div class="pc-avatar">🏫</div>
+        <div class="pc-name">Tomás, 19</div>
+        <div class="pc-role">School Inclusion Activist</div>
+        <div class="pc-desc">Tired of seeing classmates excluded, Tomás co-designed a peer mentorship programme with his school. It now runs in four schools across his city.</div>
+      </div>
+      <div class="person-card">
+        <div class="pc-avatar">📱</div>
+        <div class="pc-name">Lena, 24</div>
+        <div class="pc-role">Digital Hate Interrupter</div>
+        <div class="pc-desc">Lena trained 60 young people in her community to identify and respond to hate speech online — turning passive scrollers into active interrupters.</div>
+      </div>
+      <div class="person-card">
+        <div class="pc-avatar">🤝</div>
+        <div class="pc-name">Kofi, 21</div>
+        <div class="pc-role">Community Bridge Builder</div>
+        <div class="pc-desc">Kofi organised intercultural events in his neighbourhood after noticing tensions between local groups. His SIP created lasting friendships across communities.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ══ ME ══ -->
@@ -377,7 +477,7 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
 
   <div class="skills-2col reveal">
     <div>
-      <p style="font-size:.82rem;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Core competencies</p>
+      <p style="font-size:.82rem;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9)">Core competencies</p>
       <div class="pills-grid">
         <div class="pill" data-tip="The ability to recognise, understand and manage your own emotions — and those of others. Essential for conflict resolution and empathetic leadership."><span class="pill-dot"></span>Emotional intelligence</div>
         <div class="pill" data-tip="Truly hearing what others say — without interrupting or judging. Builds trust and helps you understand community needs deeply."><span class="pill-dot"></span>Active listening</div>
@@ -398,14 +498,14 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
   </div>
 
   <div style="margin-top:56px" class="reveal">
-    <p style="font-size:.82rem;font-weight:700;margin-bottom:18px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Explore leadership concepts</p>
+    <p style="font-size:.82rem;font-weight:700;margin-bottom:18px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9)">Explore leadership concepts</p>
     <div class="tabs-bar">
       <button class="tab-btn active" onclick="switchTab(this,'t-leadership')">What is Leadership?</button>
       <button class="tab-btn" onclick="switchTab(this,'t-youth')">Youth Leadership</button>
       <button class="tab-btn" onclick="switchTab(this,'t-start')">How to Start</button>
     </div>
     <div class="tab-panel active" id="t-leadership">
-      <p style="font-size:.95rem;color:var(--muted);line-height:1.8;max-width:620px;margin-bottom:0">Leadership is the ability to influence and inspire others to act towards a shared goal. It is not tied to a title — anyone can be a leader. Modern leadership values collaboration, empathy, and emotional intelligence above formal authority.</p>
+      <p style="font-size:.95rem;color:#e8e8ff;line-height:1.8;max-width:620px;margin-bottom:0">Leadership is the ability to influence and inspire others to act towards a shared goal. It is not tied to a title — anyone can be a leader. Modern leadership values collaboration, empathy, and emotional intelligence above formal authority.</p>
       <div class="trio">
         <div class="trio-cell"><div class="trio-k">Foundation</div><div class="trio-t">🎯 Clear Vision</div><div class="trio-d">Knowing where you are going — and why</div></div>
         <div class="trio-cell"><div class="trio-k">Skill</div><div class="trio-t">💬 Communication</div><div class="trio-d">Conveying ideas with clarity and purpose</div></div>
@@ -413,7 +513,7 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
       </div>
     </div>
     <div class="tab-panel" id="t-youth">
-      <p style="font-size:.95rem;color:var(--muted);line-height:1.8;max-width:620px">Youth leadership is the process through which young people develop skills to lead social change — finding your own voice, working in a team, managing projects, and inspiring others to act on issues like hate speech, discrimination, and exclusion.</p>
+      <p style="font-size:.95rem;color:#e8e8ff;line-height:1.8;max-width:620px">Youth leadership is the process through which young people develop skills to lead social change — finding your own voice, working in a team, managing projects, and inspiring others to act on issues like hate speech, discrimination, and exclusion.</p>
       <div class="callout">💡 <strong>Hey, discover my story!</strong> — Explore real stories of young leaders already making a difference at <a href="https://humanactivists.eu" target="_blank">humanactivists.eu</a></div>
     </div>
     <div class="tab-panel" id="t-start">
@@ -426,9 +526,40 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
       </div>
     </div>
   </div>
-</section>
 
-<!-- ══ ME & OTHERS ══ -->
+  <div style="margin-top:56px" class="reveal">
+    <div class="eyebrow">Your Leadership Journey</div>
+    <h2 style="font-size:1.8rem;margin-bottom:12px">Where does your <em>journey begin?</em></h2>
+    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:24px;max-width:600px">Leadership is not a destination — it's a path you build as you walk it. Each stage brings new challenges and new growth.</p>
+    <div class="journey-strip">
+      <div class="journey-step">
+        <div class="js-num">01</div>
+        <div class="js-title">💡 Spark</div>
+        <div class="js-desc">Something moves you — an injustice witnessed, a story heard, a moment of anger or empathy. This is where every leader begins.</div>
+      </div>
+      <div class="journey-step">
+        <div class="js-num">02</div>
+        <div class="js-title">🔍 Explore</div>
+        <div class="js-desc">You start asking questions. You read, listen, observe. You discover your topic runs deeper than you thought — and so does your commitment.</div>
+      </div>
+      <div class="journey-step">
+        <div class="js-num">03</div>
+        <div class="js-title">🗣️ Connect</div>
+        <div class="js-desc">You share your idea. You find others who care. Trust is built one conversation at a time — in person and online.</div>
+      </div>
+      <div class="journey-step">
+        <div class="js-num">04</div>
+        <div class="js-title">🛠️ Act</div>
+        <div class="js-desc">You stop planning and start doing. Small actions, fast learning, course corrections. Imperfect action beats perfect inaction every time.</div>
+      </div>
+      <div class="journey-step">
+        <div class="js-num">05</div>
+        <div class="js-title">🌱 Grow</div>
+        <div class="js-desc">Your project evolves. You evolve. You begin to see yourself — and be seen by others — as a genuine changemaker.</div>
+      </div>
+    </div>
+  </div>
+</section>
 <hr>
 <section class="section" id="others">
   <div class="eyebrow">Module 03 — Team &amp; Collaboration</div>
@@ -446,8 +577,8 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
   <div class="story-block reveal">
     <div class="sb-left">
       <div class="eyebrow" style="margin-bottom:10px">Storytelling for Change</div>
-      <h3 style="font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:14px">Build your powerful story</h3>
-      <p style="font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:22px">A compelling story is a leader's most powerful tool. It connects emotionally, inspires action, and makes your project memorable.</p>
+      <h3 style="font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:14px;color:var(--white)">Build your powerful story</h3>
+      <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:22px">A compelling story is a leader's most powerful tool. It connects emotionally, inspires action, and makes your project memorable.</p>
       <button class="btn btn-purple" style="font-size:.78rem;padding:9px 16px" onclick="openModal('m-story')">How to build a powerful story →</button>
     </div>
     <div class="sb-right">
@@ -455,6 +586,38 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
       <div class="story-tag"><div class="st-t">🎭 The challenge</div><div class="st-s">The problem you have identified and experienced</div></div>
       <div class="story-tag"><div class="st-t">🌟 The transformation</div><div class="st-s">What changed because of your action</div></div>
       <div class="story-tag"><div class="st-t">📣 The invitation</div><div class="st-s">How others can join your movement</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:64px" class="reveal">
+    <div class="eyebrow">Inspiring Others</div>
+    <h2 style="font-size:1.8rem;margin-bottom:12px">How to move <em>people to act</em></h2>
+    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">Inspiration is not magic — it is a skill you can learn. Here are the core principles for moving people from indifference to action.</p>
+    <div class="inspire-grid">
+      <div class="inspire-cell">
+        <div class="ic-num">01 — Connect emotionally</div>
+        <div class="ic-title">Lead with feeling, not facts</div>
+        <div class="ic-desc">Data informs, but emotion activates. Before sharing statistics, share a human story. Help people feel the problem in their gut before they understand it in their head.</div>
+        <div class="ic-example">"I'm not going to give you numbers. I'm going to tell you about my neighbour, who…"</div>
+      </div>
+      <div class="inspire-cell">
+        <div class="ic-num">02 — Make it personal</div>
+        <div class="ic-title">Speak directly to the person in front of you</div>
+        <div class="ic-desc">People engage when they see themselves in your message. Ask yourself: what does this person care about? What fear or hope does my project touch? Then speak to that — not to a crowd, but to them.</div>
+        <div class="ic-example">"You've probably seen this in your own school / street / feed…"</div>
+      </div>
+      <div class="inspire-cell">
+        <div class="ic-num">03 — Show it's possible</div>
+        <div class="ic-title">Give people a reason to believe</div>
+        <div class="ic-desc">Hope needs evidence. Share examples, early results, or similar projects elsewhere. When people can see that change has happened somewhere, they can imagine it happening here.</div>
+        <div class="ic-example">"In a city just like ours, a group of young people did exactly this, and…"</div>
+      </div>
+      <div class="inspire-cell">
+        <div class="ic-num">04 — Give a clear role</div>
+        <div class="ic-title">Tell people exactly how to help</div>
+        <div class="ic-desc">Inspired people need direction. A vague "get involved" goes nowhere. Offer a specific, low-barrier first step — a meeting to attend, a post to share, a skill to contribute. Make saying yes easy.</div>
+        <div class="ic-example">"All I need from you right now is one hour next Saturday at the community centre."</div>
+      </div>
     </div>
   </div>
 </section>
@@ -477,8 +640,28 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
     <div class="pillar-panel" id="pp-belonging"><p>A sense of belonging — feeling genuinely part of a community — is a fundamental human need. When people feel they do not belong, they are more vulnerable to radicalisation, isolation, and harm. Fostering belonging means actively including people who are often excluded: newcomers, people from different cultural backgrounds, and those who face discrimination. The HUMAN project is built on the conviction that every young person deserves to belong.</p><button onclick="closePillar('pp-belonging')">✕ Close</button></div>
   </div>
 
-  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Needs Analysis</p>
-  <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px"><strong>Hover each method</strong> for practical guidance</p>
+  <div class="belonging-block reveal">
+    <div class="bb-cell highlight">
+      <div class="bb-label">Why it matters</div>
+      <div class="bb-title">Belonging is the foundation of everything</div>
+      <div class="bb-body">When young people feel they belong — in their school, neighbourhood, or online community — they are more resilient, more engaged, and more likely to stand up for others. Exclusion, by contrast, creates fertile ground for radicalisation and hate.</div>
+    </div>
+    <div class="bb-cell">
+      <div class="bb-label">What you can do</div>
+      <div class="bb-title">Practical ways to foster belonging</div>
+      <ul class="bb-list">
+        <li>Actively include people who are often left out of decisions</li>
+        <li>Create spaces where different languages and cultures are welcomed</li>
+        <li>Celebrate diverse stories, not just majority narratives</li>
+        <li>Name exclusion when you see it — silence is complicity</li>
+        <li>Build rituals and traditions that new people can join</li>
+        <li>Check in with people on the margins, not just the loudest voices</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px">Needs Analysis</p>
+  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:14px"><strong>Hover each method</strong> for practical guidance</p>
   <div class="needs reveal">
     <div class="need" data-tip="Spend time in your community and observe — what do you see? Who is present? Who is absent? What tensions or needs become visible when you simply pay attention?"><div class="need-icon">👁️</div><div class="need-label">Observations</div></div>
     <div class="need" data-tip="Have deep one-to-one conversations with community members. Prepare open questions, listen actively, and let their stories guide your understanding."><div class="need-icon">🎙️</div><div class="need-label">Interviews</div></div>
@@ -488,8 +671,8 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
     <div class="need" data-tip="Map what is available — people with skills, funding, spaces, organisations, networks. Knowing your resources helps you design a realistic and sustainable project."><div class="need-icon">🎒</div><div class="need-label">Resources</div></div>
   </div>
 
-  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Community Profile</p>
-  <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px"><strong>Click any dimension</strong> to understand it in depth</p>
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px">Community Profile</p>
+  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:16px"><strong>Click any dimension</strong> to understand it in depth</p>
   <div class="prof-grid reveal">
     <button class="prof-btn" onclick="toggleProf(this,'pf-define')">Define your community</button>
     <button class="prof-btn" onclick="toggleProf(this,'pf-assess')">Assess needs</button>
@@ -517,8 +700,8 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
   <div class="prof-detail" id="pf-challenges"><strong>Challenges:</strong> Be honest about the obstacles your project will face — lack of funding, community resistance, political barriers, your own capacity. Planning for challenges in advance makes your project more resilient and credible.</div>
   <div class="prof-detail" id="pf-objectives"><strong>Objectives:</strong> Translate your goals into specific, measurable, achievable, relevant, and time-bound (SMART) objectives. Clear objectives help you stay on track, communicate your vision, and evaluate your impact at the end.</div>
 
-  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;margin-top:48px">The Importance of Scale</p>
-  <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px"><strong>Click each level</strong> to understand how it connects to your work</p>
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px;margin-top:48px">The Importance of Scale</p>
+  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:14px"><strong>Click each level</strong> to understand how it connects to your work</p>
   <div class="scale reveal">
     <div class="scale-row" onclick="toggleScale(this)">
       <div class="sr-lbl">🌍 Global</div>
@@ -546,10 +729,10 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
     </div>
   </div>
 
-  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Social Impact Project Lifecycle</p>
-  <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px"><strong>Click each phase</strong> for key questions and tips</p>
+  <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px">Social Impact Project Lifecycle</p>
+  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:14px"><strong>Click each phase</strong> for key questions and tips</p>
   <div class="lifecycle reveal">
-    <div class="lc active" onclick="toggleLc(this)">
+    <div class="lc" onclick="toggleLc(this)">
       <div class="lc-n">01</div><div class="lc-t">Start</div>
       <div class="lc-d">Everything begins with an idea! Identify a problem and imagine a solution.</div>
       <div class="lc-x">What problem am I solving? Who is affected? Why does it matter to me? Is there community support? Tip: Don't rush this phase — a well-chosen problem saves enormous effort later.</div>
@@ -559,7 +742,7 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
       <div class="lc-d">Define objectives, resources, team and a detailed action plan.</div>
       <div class="lc-x">What are my SMART objectives? Who is in my team? What resources do I need? What does success look like? Tip: Plan for things to go wrong — they will!</div>
     </div>
-    <div class="lc" onclick="toggleLc(this)">
+    <div class="lc active" onclick="toggleLc(this)">
       <div class="lc-n">03</div><div class="lc-t">Implementation</div>
       <div class="lc-d">Put the plan into practice, monitor progress and adapt when needed.</div>
       <div class="lc-x">Are we on track? What is working and what is not? Are team members feeling supported? Regular check-ins with your team and community are essential — do not disappear into execution mode.</div>
@@ -604,14 +787,14 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
       <div class="ax-d">Know your rights as an active young citizen and the responsibilities that come with leadership.</div>
       <div class="ax-hint">Click to expand ↓</div>
       <div class="ax-more">
-        <strong style="color:var(--black)">Your rights include:</strong>
+        <strong style="color:var(--white)">Your rights include:</strong>
         <ul>
           <li>The right to participate in decisions that affect you</li>
           <li>The right to a safe and inclusive environment</li>
           <li>The right to access information and education</li>
           <li>The right to express your views freely and safely</li>
         </ul>
-        <strong style="color:var(--black)">Your duties include:</strong>
+        <strong style="color:var(--white)">Your duties include:</strong>
         <ul>
           <li>Respecting the rights and dignity of others</li>
           <li>Acting with integrity and transparency</li>
@@ -629,6 +812,44 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
         The agreement covers: your role and responsibilities, expected time commitment, values and code of conduct, confidentiality, and how conflicts will be handled.
         <br><br>
         <button class="btn btn-yellow" style="font-size:.75rem;padding:8px 14px" onclick="event.stopPropagation();openModal('m-agreement')">View sample agreement →</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:64px" class="reveal">
+    <div class="eyebrow">Truques e Dicas · Tips &amp; Tricks</div>
+    <h2 style="font-size:1.8rem;margin-bottom:12px">Hard-won wisdom from <em>the field</em></h2>
+    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">These are the things experienced youth leaders wish someone had told them at the start.</p>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-emoji">🔋</div>
+        <div class="tip-title">Protect your energy</div>
+        <div class="tip-body">Burnout is real. Schedule rest as seriously as you schedule meetings. You cannot pour from an empty cup — a tired activist is a less effective one.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-emoji">🎯</div>
+        <div class="tip-title">Start smaller than you think</div>
+        <div class="tip-body">The best SIPs begin with a tiny, concrete action. A pilot event for 10 people teaches you more than six months of planning. Start, learn, grow.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-emoji">🤝</div>
+        <div class="tip-title">Find your people first</div>
+        <div class="tip-body">Before you launch anything publicly, build a small core team of people who genuinely believe in what you're doing. They'll carry you through the hard moments.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-emoji">📝</div>
+        <div class="tip-title">Document everything</div>
+        <div class="tip-body">Take notes, photos, quotes. Your future funders, partners, and collaborators will want evidence of impact. Your future self will be grateful you kept records.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-emoji">💬</div>
+        <div class="tip-title">Ask, don't assume</div>
+        <div class="tip-body">The communities you want to help know what they need. Ask before you act. The most common mistake in social projects is solving the wrong problem with confidence.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-emoji">🌊</div>
+        <div class="tip-title">Embrace the messy middle</div>
+        <div class="tip-body">Every project goes through a phase where nothing seems to be working. This is normal — not a sign to quit. The breakthrough usually comes just after the hardest moment.</div>
       </div>
     </div>
   </div>
@@ -713,7 +934,35 @@ footer{background:linear-gradient(135deg,var(--purple),var(--blue));color:rgba(2
 <div id="ftip"></div>
 
 <script>
-// ─── ACCORDION ───
+// ─── FULLSCREEN ───
+function toggleFullscreen() {
+  const shell = document.getElementById('app-shell') || document.documentElement;
+  const expandIcon = document.getElementById('fs-icon-expand');
+  const shrinkIcon = document.getElementById('fs-icon-shrink');
+  const label = document.getElementById('fs-label');
+  const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+  if (!isFs) {
+    const req = shell.requestFullscreen || shell.webkitRequestFullscreen || shell.mozRequestFullScreen;
+    if (req) req.call(shell);
+    expandIcon.style.display = 'none';
+    shrinkIcon.style.display = '';
+    label.textContent = 'Exit';
+  } else {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+    if (exit) exit.call(document);
+    expandIcon.style.display = '';
+    shrinkIcon.style.display = 'none';
+    label.textContent = 'Fullscreen';
+  }
+}
+document.addEventListener('fullscreenchange', () => {
+  const isFs = !!document.fullscreenElement;
+  document.getElementById('fs-icon-expand').style.display = isFs ? 'none' : '';
+  document.getElementById('fs-icon-shrink').style.display = isFs ? '' : 'none';
+  document.getElementById('fs-label').textContent = isFs ? 'Exit' : 'Fullscreen';
+});
+
+
 function toggleAcc(id) {
   const item = document.getElementById(id);
   const wasOpen = item.classList.contains('open');
@@ -851,5 +1100,6 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+</div><!-- /#app-shell -->
 </body>
 </html>
