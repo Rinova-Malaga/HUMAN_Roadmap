@@ -331,12 +331,22 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
 .bb-list{list-style:none;padding:0;margin-top:12px}
 .bb-list li{font-size:.82rem;color:#e8e8ff;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
 .bb-list li::before{content:'→';color:var(--yellow);flex-shrink:0;font-weight:700}
-@media(max-width:960px){
-  .inspire-grid{grid-template-columns:1fr}
-  .belonging-block{grid-template-columns:1fr}
-  .people-grid{grid-template-columns:1fr 1fr}
-  .journey-strip{grid-template-columns:1fr 1fr}
-}
+.exercise-panel{display:none;margin-top:4px;margin-bottom:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-left:3px solid var(--yellow);border-radius:var(--r);padding:20px 24px;animation:fadeUp .25s ease}
+.exercise-panel.open{display:block}
+.ex-close{font-size:.72rem;font-weight:700;color:var(--yellow);cursor:pointer;margin-bottom:10px;text-transform:uppercase;letter-spacing:.07em}
+.ex-close:hover{text-decoration:underline}
+.ex-label{font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:8px}
+.exercise-panel p{font-size:.88rem;color:#e8e8ff;line-height:1.75}
+/* Community profile diagram */
+.comm-diagram{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:24px;position:relative}
+.cd-diamond{display:flex;flex-direction:column;align-items:center;position:relative;padding:0 4px}
+.cd-shape{width:90px;height:90px;transform:rotate(45deg);display:flex;align-items:center;justify-content:center;margin:8px auto;flex-shrink:0;position:relative}
+.cd-shape.up{clip-path:polygon(50% 0%,100% 100%,0% 100%)}
+.cd-shape.down{clip-path:polygon(0% 0%,100% 0%,50% 100%)}
+.cd-shape-inner{transform:rotate(-45deg);font-size:.72rem;font-weight:700;text-align:center;line-height:1.25;color:var(--white);padding:8px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.cd-label-top,.cd-label-bottom{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-align:center;line-height:1.3}
+.cd-sub{font-size:.6rem;color:rgba(255,255,255,.7);text-align:center;margin-top:2px}
+@media(max-width:960px){.comm-diagram{grid-template-columns:repeat(3,1fr);gap:8px}.inspire-grid{grid-template-columns:1fr}.belonging-block{grid-template-columns:1fr}.people-grid{grid-template-columns:1fr 1fr}.journey-strip{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -409,21 +419,21 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
           <span class="acc-head-t">Who is a "changemaker"?</span>
           <span class="acc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg></span>
         </div>
-        <div class="acc-body"><div class="acc-inner">A changemaker is someone who identifies social problems and acts to solve them innovatively. You don't need to be famous or have significant resources — just the will to act and the ability to inspire others to join you. Young changemakers exist everywhere: in schools, neighbourhoods, youth groups and associations.</div></div>
+        <div class="acc-body"><div class="acc-inner">A changemaker is anyone who takes initiative to deal with a problem, causing a positive change. You don't need to be famous or have significant resources — young people are true agents of change, everywhere: in schools, neighbourhoods, youth groups and associations.</div></div>
       </div>
       <div class="acc-item" id="acc2">
         <div class="acc-head" onclick="toggleAcc('acc2')">
           <span class="acc-head-t">What does "change" mean?</span>
           <span class="acc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg></span>
         </div>
-        <div class="acc-body"><div class="acc-inner">Social change begins with the awareness that something can be different — and better. It means questioning the status quo, proposing alternatives, and mobilising people. In the HUMAN context, change also means actively interrupting hate speech and building more inclusive communities, both online and offline.</div></div>
+        <div class="acc-body"><div class="acc-inner">Change is a process through which something becomes different, and develops. From the identification of a social problem that affects a community, through planning and implementation of a SIP, young people can make a difference — creating a positive transformation in their own community!</div></div>
       </div>
       <div class="acc-item" id="acc3">
         <div class="acc-head" onclick="toggleAcc('acc3')">
           <span class="acc-head-t">What is a Social Impact Project (SIP)?</span>
           <span class="acc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg></span>
         </div>
-        <div class="acc-body"><div class="acc-inner">A Social Impact Project (SIP) is an initiative designed to solve a concrete community problem, creating lasting positive value. It has clear objectives, involves the community in its design, and is both sustainable and measurable. Your SIP can be born from a simple observation — a moment when you noticed injustice, exclusion, or hate, and decided to do something about it.</div></div>
+        <div class="acc-body"><div class="acc-inner">A Social Impact Project (SIP) is an educational process with structured learning outcomes, co-produced with youth workers and young people. It is designed to solve a concrete community problem, creating lasting positive value. It has clear objectives, involves the community in its design, and is both sustainable and measurable. Your SIP can be born from a simple observation — a moment when you noticed injustice, exclusion, or hate, and decided to do something about it.</div></div>
       </div>
       <div class="acc-item" id="acc4">
         <div class="acc-head" onclick="toggleAcc('acc4')">
@@ -438,31 +448,31 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
   <div style="margin-top:64px" class="reveal">
     <div class="eyebrow">Young Changemakers in Action</div>
     <h2 style="font-size:1.8rem;margin-bottom:12px">They started just <em>like you</em></h2>
-    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">Every changemaker began with a single moment of decision. Here are four young leaders who turned personal experience into community impact.</p>
+    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">Every changemaker begins with a wish for something to be different. Here are four young leaders sharing what drives them.</p>
     <div class="people-grid">
       <div class="person-card">
-        <div class="pc-avatar">🎤</div>
-        <div class="pc-name">Amara, 22</div>
-        <div class="pc-role">Counter-Narrative Creator</div>
-        <div class="pc-desc">After experiencing racist comments online, Amara launched a social media campaign amplifying diaspora voices. Within three months, her counter-narratives reached over 40,000 people.</div>
+        <div class="pc-avatar">🎓</div>
+        <div class="pc-name">Alberto</div>
+        <div class="pc-role">University Engagement</div>
+        <div class="pc-desc">I want students to take university associations more seriously. It's hard because students tend to prioritise exams over everything else — but collective action needs all of us.</div>
       </div>
       <div class="person-card">
-        <div class="pc-avatar">🏫</div>
-        <div class="pc-name">Tomás, 19</div>
-        <div class="pc-role">School Inclusion Activist</div>
-        <div class="pc-desc">Tired of seeing classmates excluded, Tomás co-designed a peer mentorship programme with his school. It now runs in four schools across his city.</div>
-      </div>
-      <div class="person-card">
-        <div class="pc-avatar">📱</div>
-        <div class="pc-name">Lena, 24</div>
-        <div class="pc-role">Digital Hate Interrupter</div>
-        <div class="pc-desc">Lena trained 60 young people in her community to identify and respond to hate speech online — turning passive scrollers into active interrupters.</div>
+        <div class="pc-avatar">🏛️</div>
+        <div class="pc-name">Saurelle</div>
+        <div class="pc-role">Education Advocate</div>
+        <div class="pc-desc">I wish young people had more power to influence the education sector. Our voices matter — and we deserve a real seat at the table when decisions are made about our futures.</div>
       </div>
       <div class="person-card">
         <div class="pc-avatar">🤝</div>
-        <div class="pc-name">Kofi, 21</div>
-        <div class="pc-role">Community Bridge Builder</div>
-        <div class="pc-desc">Kofi organised intercultural events in his neighbourhood after noticing tensions between local groups. His SIP created lasting friendships across communities.</div>
+        <div class="pc-name">Tereza</div>
+        <div class="pc-role">Volunteering Champion</div>
+        <div class="pc-desc">I want more young people involved in volunteering — with homeless people, migrants, the elderly. We need to start promoting this in schools, so more of us discover what we can give.</div>
+      </div>
+      <div class="person-card">
+        <div class="pc-avatar">📣</div>
+        <div class="pc-name">Adrián</div>
+        <div class="pc-role">Youth Policy Voice</div>
+        <div class="pc-desc">I want to influence the decision-makers who shape regional and local youth activities. Young people need to be involved in planning — not just invited to participate in what adults have already decided.</div>
       </div>
     </div>
   </div>
@@ -471,7 +481,7 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
 <!-- ══ ME ══ -->
 <hr>
 <section class="section" id="me">
-  <div class="eyebrow">Module 02 — Discover Yourself</div>
+  <div class="eyebrow">Step 02 — Discover Yourself</div>
   <h2>ME as a <em>young leader</em></h2>
   <p class="lead">Youth leadership starts with you. <strong>Hover each competency</strong> to learn more.</p>
 
@@ -479,21 +489,21 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
     <div>
       <p style="font-size:.82rem;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9)">Core competencies</p>
       <div class="pills-grid">
-        <div class="pill" data-tip="The ability to recognise, understand and manage your own emotions — and those of others. Essential for conflict resolution and empathetic leadership."><span class="pill-dot"></span>Emotional intelligence</div>
-        <div class="pill" data-tip="Truly hearing what others say — without interrupting or judging. Builds trust and helps you understand community needs deeply."><span class="pill-dot"></span>Active listening</div>
-        <div class="pill" data-tip="Believing in your own abilities and decisions. Without confidence, it is hard to inspire others or take initiative when it matters most."><span class="pill-dot"></span>Self-confidence</div>
-        <div class="pill" data-tip="Continuing despite setbacks. Social change rarely happens overnight — persistence is what keeps a project alive."><span class="pill-dot"></span>Persistence</div>
-        <div class="pill" data-tip="The inner drive that keeps you focused on your goals. Connecting your work to a deeper why sustains motivation even in difficult moments."><span class="pill-dot"></span>Motivation</div>
-        <div class="pill" data-tip="The capacity to recover quickly from difficulties. Youth leaders face rejection and failure — resilience turns those moments into growth."><span class="pill-dot"></span>Resilience</div>
-        <div class="pill" data-tip="Taking initiative before being asked. Proactive leaders identify what needs to happen and make it happen — without waiting for permission."><span class="pill-dot"></span>Proactivity</div>
-        <div class="pill" data-tip="Managing time, resources and people effectively. Good organisation transforms good intentions into concrete, measurable actions."><span class="pill-dot"></span>Organisation</div>
-        <div class="pill" data-tip="Questioning assumptions and analysing information before acting. In the age of misinformation, this is a core digital activism skill."><span class="pill-dot"></span>Critical thinking</div>
-        <div class="pill" data-tip="Adapting your plans when circumstances change. Flexible leaders find creative solutions rather than getting stuck when things go differently than planned."><span class="pill-dot"></span>Flexibility</div>
+        <div class="pill" data-tip="Recognise your feelings and understand how they influence your thoughts and behaviours. Self-control is a key part of a leadership attitude."><span class="pill-dot"></span>Emotional intelligence</div>
+        <div class="pill" data-tip="Listening is not just gathering information — it makes others feel important because their opinions are being valued. Truly hearing someone builds trust."><span class="pill-dot"></span>Active listening</div>
+        <div class="pill" data-tip="Cultivate a positive view of yourself. Identify your strengths and areas to improve without judgement, and set realistic expectations for yourself."><span class="pill-dot"></span>Self-confidence</div>
+        <div class="pill" data-tip="Be patient and determined. Don't rush, and never give up — social change rarely happens overnight, and persistence is what keeps a project alive."><span class="pill-dot"></span>Persistence</div>
+        <div class="pill" data-tip="Identify your interests, passions, vocation and capacities. Motivation helps you discover your potential and sustains you through difficult moments."><span class="pill-dot"></span>Motivation</div>
+        <div class="pill" data-tip="Overcome obstacles and errors. Develop the capacity to learn from them — look at situations more positively, seek help, and focus on what you can control."><span class="pill-dot"></span>Resilience</div>
+        <div class="pill" data-tip="Be active in proposing ideas, encouraging others to act, and striving to become a role model. Proactive leaders make things happen without waiting to be asked."><span class="pill-dot"></span>Proactivity</div>
+        <div class="pill" data-tip="Carefully plan your actions to achieve your objectives. Be punctual and prioritise tasks by importance and urgency."><span class="pill-dot"></span>Organisation</div>
+        <div class="pill" data-tip="Make decisions in a balanced way based on objective arguments and various sources of information, considering different viewpoints before acting."><span class="pill-dot"></span>Critical thinking</div>
+        <div class="pill" data-tip="Prepare to adapt to different situations with unexpected issues. Don't fear changing plans — flexible leaders find creative solutions rather than getting stuck."><span class="pill-dot"></span>Flexibility</div>
       </div>
     </div>
     <div class="quote-card">
-      <blockquote>"Your involvement in a SIP will help you reveal your potential to become a changemaker — capable of turning ideas into real plans."</blockquote>
-      <cite>HUMAN Youth Leader RoadMap</cite>
+      <blockquote>"Storytelling creates trust, increases interest and engages your audience so they can understand and share your vision and objectives."</blockquote>
+      <cite>HUMAN Youth Leader Resource Kit</cite>
     </div>
   </div>
 
@@ -505,80 +515,119 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
       <button class="tab-btn" onclick="switchTab(this,'t-start')">How to Start</button>
     </div>
     <div class="tab-panel active" id="t-leadership">
-      <p style="font-size:.95rem;color:#e8e8ff;line-height:1.8;max-width:620px;margin-bottom:0">Leadership is the ability to influence and inspire others to act towards a shared goal. It is not tied to a title — anyone can be a leader. Modern leadership values collaboration, empathy, and emotional intelligence above formal authority.</p>
+      <p style="font-size:.95rem;color:#e8e8ff;line-height:1.8;max-width:620px;margin-bottom:0">Leadership can be assumed by anyone. It is the process of guiding and influencing others, based on self-knowledge and self-confidence. Leadership is only successful with the support and consensus of those being led — it is as much about human relationships as it is about organisational duties.</p>
       <div class="trio">
-        <div class="trio-cell"><div class="trio-k">Foundation</div><div class="trio-t">🎯 Clear Vision</div><div class="trio-d">Knowing where you are going — and why</div></div>
-        <div class="trio-cell"><div class="trio-k">Skill</div><div class="trio-t">💬 Communication</div><div class="trio-d">Conveying ideas with clarity and purpose</div></div>
-        <div class="trio-cell"><div class="trio-k">Quality</div><div class="trio-t">❤️ Empathy</div><div class="trio-d">Understanding others' perspectives and needs</div></div>
+        <div class="trio-cell"><div class="trio-k">Foundation</div><div class="trio-t">🔑 Self-knowledge &amp; confidence</div><div class="trio-d">Leadership is based on knowing yourself and trusting your own abilities</div></div>
+        <div class="trio-cell"><div class="trio-k">Condition</div><div class="trio-t">🤝 Support &amp; consensus</div><div class="trio-d">Leadership only succeeds with the support and agreement of those being led</div></div>
+        <div class="trio-cell"><div class="trio-k">Scope</div><div class="trio-t">🌱 Human relations &amp; community</div><div class="trio-d">Related to organisational duties, but also human development, peer encouragement and community involvement</div></div>
       </div>
     </div>
     <div class="tab-panel" id="t-youth">
-      <p style="font-size:.95rem;color:#e8e8ff;line-height:1.8;max-width:620px">Youth leadership is the process through which young people develop skills to lead social change — finding your own voice, working in a team, managing projects, and inspiring others to act on issues like hate speech, discrimination, and exclusion.</p>
+      <p style="font-size:.95rem;color:#e8e8ff;line-height:1.8;max-width:620px">Youth leadership is a bilateral process: (1) discovering your own strengths, weaknesses and goals, while improving your individual capacities and self-confidence; and (2) developing skills to guide and inspire others, becoming an example. It means finding your voice, working in a team, managing projects, and inspiring others to act on issues like hate speech, discrimination, and exclusion.</p>
       <div class="callout">💡 <strong>Hey, discover my story!</strong> — Explore real stories of young leaders already making a difference at <a href="https://humanactivists.eu" target="_blank">humanactivists.eu</a></div>
     </div>
     <div class="tab-panel" id="t-start">
+      <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;max-width:600px;margin-bottom:20px">Are you ready to challenge yourself? Begin with a self-knowledge exercise based on the <strong style="color:var(--yellow)">Johari Window Model</strong> — a tool that helps you understand how you see yourself versus how others see you.</p>
       <div class="steps-grid">
-        <div class="step"><div class="step-n">01</div><div class="step-t">Trust yourself</div><div class="step-d">Self-confidence is the foundation of any meaningful project</div></div>
-        <div class="step"><div class="step-n">02</div><div class="step-t">Develop your interest</div><div class="step-d">Deepen the topic that truly motivates and drives you</div></div>
-        <div class="step"><div class="step-n">03</div><div class="step-t">Build your story</div><div class="step-d">Create a powerful narrative to inspire and mobilise others</div></div>
-        <div class="step"><div class="step-n">04</div><div class="step-t">Create connections</div><div class="step-d">Networks and alliances multiply your impact</div></div>
-        <div class="step"><div class="step-n">05</div><div class="step-t">Communicate effectively</div><div class="step-d">Convey your message with clarity and enthusiasm</div></div>
+        <div class="step"><div class="step-n">01</div><div class="step-t">Trust yourself</div><div class="step-d">The first pillar for inspiring others' confidence is your own mindset. If you don't believe in your idea's potential, no one else will.</div></div>
+        <div class="step"><div class="step-n">02</div><div class="step-t">Develop your interest</div><div class="step-d">Commitment grows when you value relationships, communicate effectively, and work together with others — even through conflicts.</div></div>
+        <div class="step"><div class="step-n">03</div><div class="step-t">Create connections</div><div class="step-d">Talk to people in your community. Learn about their needs. Face-to-face interactions build genuine engagement; a strong online presence reaches more people.</div></div>
+        <div class="step"><div class="step-n">04</div><div class="step-t">Communicate effectively</div><div class="step-d">Good communicators are also good listeners. Effective communication promotes trust, respect and collaboration — focus on your audience and build a story about your cause.</div></div>
+        <div class="step"><div class="step-n">05</div><div class="step-t">Build your story</div><div class="step-d">Storytelling creates trust and engages your audience so they can understand, share and join your vision. A powerful story moves people from observers to participants.</div></div>
       </div>
     </div>
   </div>
 
   <div style="margin-top:56px" class="reveal">
-    <div class="eyebrow">Your Leadership Journey</div>
-    <h2 style="font-size:1.8rem;margin-bottom:12px">Where does your <em>journey begin?</em></h2>
-    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:24px;max-width:600px">Leadership is not a destination — it's a path you build as you walk it. Each stage brings new challenges and new growth.</p>
+    <div class="eyebrow">A Story of Youth Leadership</div>
+    <h2 style="font-size:1.8rem;margin-bottom:12px">Fridays for <em>YOUng</em></h2>
+    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:24px;max-width:600px">This is Mário's story — a real example of how a young person turned an idea into a movement, step by step.</p>
     <div class="journey-strip">
       <div class="journey-step">
         <div class="js-num">01</div>
-        <div class="js-title">💡 Spark</div>
-        <div class="js-desc">Something moves you — an injustice witnessed, a story heard, a moment of anger or empathy. This is where every leader begins.</div>
+        <div class="js-title">💡 The spark</div>
+        <div class="js-desc">Mário, 19, was motivated but didn't know where to start. He joined an online leadership training and began doing introspection exercises — discovering his values and strengths.</div>
       </div>
       <div class="journey-step">
         <div class="js-num">02</div>
-        <div class="js-title">🔍 Explore</div>
-        <div class="js-desc">You start asking questions. You read, listen, observe. You discover your topic runs deeper than you thought — and so does your commitment.</div>
+        <div class="js-title">🌱 Building confidence</div>
+        <div class="js-desc">After training, he put his learning into practice. Day by day he felt more confident — and he started to want to involve others in what he was discovering.</div>
       </div>
       <div class="journey-step">
         <div class="js-num">03</div>
-        <div class="js-title">🗣️ Connect</div>
-        <div class="js-desc">You share your idea. You find others who care. Trust is built one conversation at a time — in person and online.</div>
+        <div class="js-title">💬 The idea</div>
+        <div class="js-desc">Mário had an idea: a weekly meeting where peers from all backgrounds could gather and discuss their concerns freely — a space that didn't yet exist in his community.</div>
       </div>
       <div class="journey-step">
         <div class="js-num">04</div>
-        <div class="js-title">🛠️ Act</div>
-        <div class="js-desc">You stop planning and start doing. Small actions, fast learning, course corrections. Imperfect action beats perfect inaction every time.</div>
+        <div class="js-title">🛠️ Building it</div>
+        <div class="js-desc">He created a team and opened a "Club" in a public space, free for young people involved in culture, mental health, and awareness initiatives. Friends helped create a social media channel.</div>
       </div>
       <div class="journey-step">
         <div class="js-num">05</div>
-        <div class="js-title">🌱 Grow</div>
-        <div class="js-desc">Your project evolves. You evolve. You begin to see yourself — and be seen by others — as a genuine changemaker.</div>
+        <div class="js-title">🌟 The impact</div>
+        <div class="js-desc">They named it <em>Fridays for YOUng: não fiques só chateado — fala e faz acontecer</em>. The club became a youth-led centre where all feel free to express themselves. Mário now inspires others and builds positive relations across his community.</div>
       </div>
     </div>
   </div>
 </section>
 <hr>
 <section class="section" id="others">
-  <div class="eyebrow">Module 03 — Team &amp; Collaboration</div>
+  <div class="eyebrow">Step 03 — Team &amp; Collaboration</div>
   <h2>ME &amp; <em>Others</em></h2>
-  <p class="lead">Inspiring others, building a diverse team, and communicating effectively are essential capacities for any young leader tackling hate speech and structural racism.</p>
+  <p class="lead">Youth finds inspiration in many places. Transforming ideas into Social Impact Projects can feel like a giant task — this module guides you on how to share your cause, awaken motivation in others, and get them on board. <span data-tip="Youth finds inspiration in many places. But for many, transforming fresh ideas into Social Impact Projects can feel like a giant task. In response to your demand for more accessible tools for activism, we will guide you on how to share your cause, awaken motivation in others and have them on board!" style="cursor:help;border-bottom:1px dashed rgba(255,255,255,.5)">Hover for more ↗</span></p>
 
   <div class="card-grid reveal">
-    <div class="c-card"><div class="cc-icon">🌐</div><div class="cc-t">Intercultural communication</div><div class="cc-d">Understanding and valuing cultural differences to communicate more effectively with people from diverse backgrounds.</div></div>
-    <div class="c-card"><div class="cc-icon">🔄</div><div class="cc-t">Co-creation</div><div class="cc-d">Involving all team members in the creative process to generate richer, more innovative solutions together.</div></div>
-    <div class="c-card"><div class="cc-icon">❤️</div><div class="cc-t">Empathy</div><div class="cc-d">Placing ourselves in others' shoes to understand their needs, perspectives, and emotions — a core hate interruption skill.</div></div>
-    <div class="c-card"><div class="cc-icon">📋</div><div class="cc-t">Delegation</div><div class="cc-d">Distributing tasks according to each member's skills and interests to maximise team effectiveness.</div></div>
-    <div class="c-card"><div class="cc-icon">👥</div><div class="cc-t">Team building</div><div class="cc-d">Defining roles, establishing norms, and creating an environment of mutual trust and respect.</div></div>
+    <div class="c-card" onclick="toggleExercise('ex-intercultural')" style="cursor:pointer" data-tip="Communication is essential when working in a culturally diverse environment and requires adaptability, flexibility and positivity. By observing actions and listening without judgement, you can understand how people from different backgrounds act and behave — crucial for avoiding misunderstandings and collaborating effectively.">
+      <div class="cc-icon">🌐</div><div class="cc-t">Intercultural communication</div>
+      <div class="cc-d">Essential in culturally diverse environments. Needs adaptability, flexibility, and positivity — observe and listen without judgement.</div>
+      <div style="font-size:.7rem;font-weight:700;color:var(--yellow);margin-top:10px;text-transform:uppercase;letter-spacing:.07em">Click for exercise ↓</div>
+    </div>
+    <div class="c-card" onclick="toggleExercise('ex-cocreation')" style="cursor:pointer" data-tip="Co-creation takes collaboration to the next level. Each team member can contribute their unique perspective, skills and experiences to produce the best possible solution with the greatest impact. In the HUMAN project, co-creation refers to the relationship that youth workers and young leaders build to stimulate positive change through the creation, planning and implementation of a Social Impact Project.">
+      <div class="cc-icon">🔄</div><div class="cc-t">Co-creation</div>
+      <div class="cc-d">Each member contributes unique perspectives, skills and experience. Co-creation elevates collaboration and stimulates positive change.</div>
+      <div style="font-size:.7rem;font-weight:700;color:var(--yellow);margin-top:10px;text-transform:uppercase;letter-spacing:.07em">Click for exercise ↓</div>
+    </div>
+    <div class="c-card" onclick="toggleExercise('ex-empathy')" style="cursor:pointer" data-tip="Empathy is an essential leadership skill — the capacity to understand the needs of others, and to be aware of their feelings and thoughts. Our capacity to be empathetic towards others is not innate; it can be developed.">
+      <div class="cc-icon">❤️</div><div class="cc-t">Empathy</div>
+      <div class="cc-d">The capacity to understand others' needs, be aware of their feelings and thoughts. Not innate — it can be actively developed.</div>
+      <div style="font-size:.7rem;font-weight:700;color:var(--yellow);margin-top:10px;text-transform:uppercase;letter-spacing:.07em">Click for exercise ↓</div>
+    </div>
+    <div class="c-card" onclick="toggleExercise('ex-delegation')" style="cursor:pointer" data-tip="Delegation means assigning tasks to each team member, trusting in their capabilities to achieve the expected results on time. It is important to involve your team in the delegation process and empower team members to decide which tasks should be delegated to them. Focus on results rather than how the work should be done — your way is not necessarily the only or even the best way!">
+      <div class="cc-icon">📋</div><div class="cc-t">Delegation</div>
+      <div class="cc-d">Assigning tasks to team members and trusting their capabilities. Involve your team in the delegation process and focus on results, not method.</div>
+      <div style="font-size:.7rem;font-weight:700;color:var(--yellow);margin-top:10px;text-transform:uppercase;letter-spacing:.07em">Click for exercise ↓</div>
+    </div>
+    <div class="c-card"><div class="cc-icon">👥</div><div class="cc-t">Team building</div><div class="cc-d">Working with your team to define roles, build trust, and create an environment where everyone can contribute effectively.</div></div>
+  </div>
+
+  <!-- Exercise panels -->
+  <div class="exercise-panel" id="ex-intercultural">
+    <div class="ex-close" onclick="toggleExercise('ex-intercultural')">✕ Close</div>
+    <div class="ex-label">🌐 Intercultural Communication — Reflection Exercise</div>
+    <p>Think of a situation where you experienced cultural diversity. Reflect on: What did you know about the other person's background? What made you curious? What did you feel when you encountered something different from what you expected? How did you react — and how would you react differently now?</p>
+  </div>
+  <div class="exercise-panel" id="ex-cocreation">
+    <div class="ex-close" onclick="toggleExercise('ex-cocreation')">✕ Close</div>
+    <div class="ex-label">🔄 Co-creation — Safe Space Exercise</div>
+    <p>Reflect on ways to create safe spaces where team members feel comfortable sharing their opinions. Consider: small group discussions, informal conversations, anonymous questionnaires, written or visual sharing methods, and turn-taking rules. Which of these could work in your team right now?</p>
+  </div>
+  <div class="exercise-panel" id="ex-empathy">
+    <div class="ex-close" onclick="toggleExercise('ex-empathy')">✕ Close</div>
+    <div class="ex-label">❤️ Empathy — Connection Exercise</div>
+    <p>Seek out opportunities to connect with people from different backgrounds. Create a safe space for conversation. Try to identify what makes them feel happy and comfortable. Show genuine interest — without judgement — in the differences you discover. Practice active listening: listen to understand, not just to respond.</p>
+  </div>
+  <div class="exercise-panel" id="ex-delegation">
+    <div class="ex-close" onclick="toggleExercise('ex-delegation')">✕ Close</div>
+    <div class="ex-label">📋 Delegation — Team Mapping Exercise</div>
+    <p>Evaluate the main competencies of each team member. Then assign tasks that allow them to develop and strengthen those competencies — including their areas for improvement. Involve the team in deciding which tasks should be delegated to whom. Remember: focus on results, not on how the work is done.</p>
   </div>
 
   <div class="story-block reveal">
     <div class="sb-left">
       <div class="eyebrow" style="margin-bottom:10px">Storytelling for Change</div>
       <h3 style="font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:14px;color:var(--white)">Build your powerful story</h3>
-      <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:22px">A compelling story is a leader's most powerful tool. It connects emotionally, inspires action, and makes your project memorable.</p>
+      <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:22px">Storytelling creates trust, increases interest, and engages your audience so they can understand and share your vision. A compelling story moves people from observers to participants.</p>
       <button class="btn btn-purple" style="font-size:.78rem;padding:9px 16px" onclick="openModal('m-story')">How to build a powerful story →</button>
     </div>
     <div class="sb-right">
@@ -589,90 +638,142 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
     </div>
   </div>
 
-  <div style="margin-top:64px" class="reveal">
-    <div class="eyebrow">Inspiring Others</div>
-    <h2 style="font-size:1.8rem;margin-bottom:12px">How to move <em>people to act</em></h2>
-    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">Inspiration is not magic — it is a skill you can learn. Here are the core principles for moving people from indifference to action.</p>
-    <div class="inspire-grid">
-      <div class="inspire-cell">
-        <div class="ic-num">01 — Connect emotionally</div>
-        <div class="ic-title">Lead with feeling, not facts</div>
-        <div class="ic-desc">Data informs, but emotion activates. Before sharing statistics, share a human story. Help people feel the problem in their gut before they understand it in their head.</div>
-        <div class="ic-example">"I'm not going to give you numbers. I'm going to tell you about my neighbour, who…"</div>
-      </div>
-      <div class="inspire-cell">
-        <div class="ic-num">02 — Make it personal</div>
-        <div class="ic-title">Speak directly to the person in front of you</div>
-        <div class="ic-desc">People engage when they see themselves in your message. Ask yourself: what does this person care about? What fear or hope does my project touch? Then speak to that — not to a crowd, but to them.</div>
-        <div class="ic-example">"You've probably seen this in your own school / street / feed…"</div>
-      </div>
-      <div class="inspire-cell">
-        <div class="ic-num">03 — Show it's possible</div>
-        <div class="ic-title">Give people a reason to believe</div>
-        <div class="ic-desc">Hope needs evidence. Share examples, early results, or similar projects elsewhere. When people can see that change has happened somewhere, they can imagine it happening here.</div>
-        <div class="ic-example">"In a city just like ours, a group of young people did exactly this, and…"</div>
-      </div>
-      <div class="inspire-cell">
-        <div class="ic-num">04 — Give a clear role</div>
-        <div class="ic-title">Tell people exactly how to help</div>
-        <div class="ic-desc">Inspired people need direction. A vague "get involved" goes nowhere. Offer a specific, low-barrier first step — a meeting to attend, a post to share, a skill to contribute. Make saying yes easy.</div>
-        <div class="ic-example">"All I need from you right now is one hour next Saturday at the community centre."</div>
-      </div>
-    </div>
-  </div>
 </section>
-
 <!-- ══ ME & COMMUNITY ══ -->
 <hr>
 <section class="section" id="community">
-  <div class="eyebrow">Module 04 — Social Impact</div>
+  <div class="eyebrow">Step 04 — Social Impact</div>
   <h2>ME &amp; the <em>Community</em></h2>
-  <p class="lead">Community is a central element of identity. <strong>Click each pillar</strong> to explore what it means for your work as a young leader.</p>
+  <p class="lead">Community is a central element of identity. <strong>Click each pillar</strong> to explore what it means for your work as a young leader. <span data-tip="Young people have unique potential, as well as the energy, enthusiasm, optimism and creativity to seek collaborative solutions to complex challenges. Young people are vital in addressing local issues because they live the daily reality of their neighbourhoods, know the strengths and vulnerabilities of their communities, and understand the culture and common values." style="cursor:help;border-bottom:1px dashed rgba(255,255,255,.5)">Why young people?</span></p>
 
   <div class="pillars reveal" id="pillars-wrap">
     <div class="pillar" onclick="togglePillar('pp-community')"><div class="p-icon">🏘️</div><div class="p-title">Community</div><div class="p-desc">The group of people with whom you share a space, interests, or values</div><div class="p-hint">Click to explore ↓</div></div>
     <div class="pillar" onclick="togglePillar('pp-solidarity')"><div class="p-icon">🤲</div><div class="p-title">Solidarity</div><div class="p-desc">The mutual support that unites the members of a community</div><div class="p-hint">Click to explore ↓</div></div>
     <div class="pillar" onclick="togglePillar('pp-territory')"><div class="p-icon">📍</div><div class="p-title">Territory</div><div class="p-desc">The physical and symbolic space that defines the community</div><div class="p-hint">Click to explore ↓</div></div>
     <div class="pillar" onclick="togglePillar('pp-belonging')"><div class="p-icon">💙</div><div class="p-title">Sense of Belonging</div><div class="p-desc">Feeling part of something larger than yourself — vital for inclusion</div><div class="p-hint">Click to explore ↓</div></div>
-    <div class="pillar-panel" id="pp-community"><p>Community is far more than a geographic location — it is a web of relationships, shared experiences, and common goals. As a young leader, your first task is to define who your community is: What do they have in common? What challenges do they face? What do they value? Communities contain multitudes of voices, especially those of diaspora and marginalised groups.</p><button onclick="closePillar('pp-community')">✕ Close</button></div>
-    <div class="pillar-panel" id="pp-solidarity"><p>Solidarity is the glue that holds communities together — especially in the face of hate and exclusion. Building solidarity means creating spaces where people feel supported, heard, and valued. It means standing up against discriminatory behaviour, amplifying marginalised voices, and refusing to be a bystander. In a digital world, solidarity can also be expressed through sharing counter-narratives and defending targets of online hate.</p><button onclick="closePillar('pp-solidarity')">✕ Close</button></div>
-    <div class="pillar-panel" id="pp-territory"><p>Territory refers both to physical spaces your community inhabits and to symbolic spaces where identity is formed — schools, online platforms, local squares, cultural centres. The digital space is also a territory — and one where hate speech is particularly prevalent. Understanding territory helps you identify where your Social Impact Project should operate.</p><button onclick="closePillar('pp-territory')">✕ Close</button></div>
-    <div class="pillar-panel" id="pp-belonging"><p>A sense of belonging — feeling genuinely part of a community — is a fundamental human need. When people feel they do not belong, they are more vulnerable to radicalisation, isolation, and harm. Fostering belonging means actively including people who are often excluded: newcomers, people from different cultural backgrounds, and those who face discrimination. The HUMAN project is built on the conviction that every young person deserves to belong.</p><button onclick="closePillar('pp-belonging')">✕ Close</button></div>
+    <div class="pillar-panel" id="pp-community"><p>The concept of community is related to a set of social relations, based on something its members have in common.</p><button onclick="closePillar('pp-community')">✕ Close</button></div>
+    <div class="pillar-panel" id="pp-solidarity"><p>Solidarity is the result produced from shared interests, objectives and patterns within a group. It is what keeps communities moving in difficult situations — such as the COVID-19 pandemic, economic crises, situations of racism, discrimination against minorities, and wars. It is important that, as a young leader, you explain to your peers during the development of a SIP that community connection does not exist if solidarity is absent from the group.</p><button onclick="closePillar('pp-solidarity')">✕ Close</button></div>
+    <div class="pillar-panel" id="pp-territory"><p>Territory refers to the specific geographic area where a group of people, a community or a neighbourhood lives. Common practices and similar ways of living in a defined area are elements that contribute to the building of a spirit of identity and belonging to a specific place. By supporting local initiatives, young leaders can contribute — through their social actions — to growing or reinforcing a sense of community and inspire their peers to participate too.</p><button onclick="closePillar('pp-territory')">✕ Close</button></div>
+    <div class="pillar-panel" id="pp-belonging"><p>Social belonging is the subjective feeling of inclusion or acceptance in a group of people. This sense of community in a social group is a basic human need that people must satisfy in order to maintain their own identity, physical wellbeing, and mental health. To build a sense of belonging, it is important to create an emotional connection with other community members — this will make it possible to create a sense of trust and proximity. To promote this feeling, it is also important that each person feels respected in their values and beliefs.</p><button onclick="closePillar('pp-belonging')">✕ Close</button></div>
   </div>
 
-  <div class="belonging-block reveal">
-    <div class="bb-cell highlight">
-      <div class="bb-label">Why it matters</div>
-      <div class="bb-title">Belonging is the foundation of everything</div>
-      <div class="bb-body">When young people feel they belong — in their school, neighbourhood, or online community — they are more resilient, more engaged, and more likely to stand up for others. Exclusion, by contrast, creates fertile ground for radicalisation and hate.</div>
-    </div>
-    <div class="bb-cell">
-      <div class="bb-label">What you can do</div>
-      <div class="bb-title">Practical ways to foster belonging</div>
-      <ul class="bb-list">
-        <li>Actively include people who are often left out of decisions</li>
-        <li>Create spaces where different languages and cultures are welcomed</li>
-        <li>Celebrate diverse stories, not just majority narratives</li>
-        <li>Name exclusion when you see it — silence is complicity</li>
-        <li>Build rituals and traditions that new people can join</li>
-        <li>Check in with people on the margins, not just the loudest voices</li>
-      </ul>
-    </div>
-  </div>
 
   <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px">Needs Analysis</p>
   <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:14px"><strong>Hover each method</strong> for practical guidance</p>
   <div class="needs reveal">
-    <div class="need" data-tip="Spend time in your community and observe — what do you see? Who is present? Who is absent? What tensions or needs become visible when you simply pay attention?"><div class="need-icon">👁️</div><div class="need-label">Observations</div></div>
-    <div class="need" data-tip="Have deep one-to-one conversations with community members. Prepare open questions, listen actively, and let their stories guide your understanding."><div class="need-icon">🎙️</div><div class="need-label">Interviews</div></div>
-    <div class="need" data-tip="Collect structured data from a wider group. Surveys help you spot patterns and validate what you have learned from observations and interviews."><div class="need-icon">📋</div><div class="need-label">Surveys</div></div>
-    <div class="need" data-tip="Identify what already works well in your community. Every community has assets — people, places, traditions, networks. Build on them rather than starting from scratch."><div class="need-icon">💪</div><div class="need-label">Strengths</div></div>
-    <div class="need" data-tip="Where are the unmet needs? What resources are missing? What groups are underserved? Identifying gaps helps you focus your SIP where it will have the most impact."><div class="need-icon">🔍</div><div class="need-label">Gaps</div></div>
-    <div class="need" data-tip="Map what is available — people with skills, funding, spaces, organisations, networks. Knowing your resources helps you design a realistic and sustainable project."><div class="need-icon">🎒</div><div class="need-label">Resources</div></div>
+    <div class="need" data-tip="What do you notice when observing your target group in context? Focus on behaviours, attitudes and reactions. What tensions or needs become visible when you simply pay attention?"><div class="need-icon">👁️</div><div class="need-label">Observations</div></div>
+    <div class="need" data-tip="What would you like to know about your target group? Go prepared — list your questions first. Focus on both verbal and non-verbal communication. Let their stories guide your understanding."><div class="need-icon">🎙️</div><div class="need-label">Interviews</div></div>
+    <div class="need" data-tip="What data do you want to know about your target group? Prepare a questionnaire with related questions to collect what you need and plan your SIP actions."><div class="need-icon">📋</div><div class="need-label">Surveys</div></div>
+    <div class="need" data-tip="Are there strong relations between people in your community? Do people trust each other? Do they share values, religion or interests? Build on strengths rather than starting from scratch."><div class="need-icon">💪</div><div class="need-label">Strengths</div></div>
+    <div class="need" data-tip="Are there specific urgent issues to address? What is missing in your community? How can young people contribute to finding a solution?"><div class="need-icon">🔍</div><div class="need-label">Gaps</div></div>
+    <div class="need" data-tip="What resources are available in your community? How does the community mobilise them? Who can you contact to present your SIP?"><div class="need-icon">🎒</div><div class="need-label">Resources</div></div>
   </div>
 
   <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px">Community Profile</p>
-  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:16px"><strong>Click any dimension</strong> to understand it in depth</p>
+  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:20px">Understanding your community is the foundation of any effective Social Impact Project. The diagram below shows the five key steps and the dimensions to explore at each stage.</p>
+
+  <!-- Community Profile Diagram -->
+  <div class="reveal" style="margin-bottom:32px;overflow-x:auto">
+    <div style="display:flex;align-items:flex-start;justify-content:center;gap:0;min-width:640px;padding:24px 0 8px">
+
+      <!-- Step 1: Define your community (UP triangle) -->
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:128px">
+        <div data-tip="Observing and understanding your community's structure is essential — it is often an important source of social relations and information such as beliefs, attitudes, values and common objectives." style="position:relative;cursor:help;width:120px;height:104px;clip-path:polygon(50% 0%,100% 100%,0% 100%);background:#7B2D8B;display:flex;align-items:center;justify-content:center;transition:filter .2s" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter=''">
+          <span style="font-size:.62rem;font-weight:800;color:white;text-align:center;line-height:1.25;padding:0 12px;margin-top:30px">DEFINE YOUR COMMUNITY</span>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-population')" title="Click for guiding questions">
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:38px solid #C06BC9;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+            <div style="font-size:.58rem;font-weight:700;color:#C06BC9;margin-top:4px">POPULATION</div>
+          </div>
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-territory')" title="Click for guiding questions">
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:38px solid #C06BC9;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+            <div style="font-size:.58rem;font-weight:700;color:#C06BC9;margin-top:4px">TERRITORY</div>
+          </div>
+        </div>
+        <div style="text-align:center;cursor:pointer;margin-top:4px" onclick="openProf('pf-values')" title="Click for guiding questions">
+          <div style="font-size:.58rem;font-weight:700;color:#C06BC9">ATTITUDES &amp; VALUES</div>
+        </div>
+      </div>
+
+      <!-- Step 2: Assess needs (DOWN triangle) -->
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:128px">
+        <div style="display:flex;gap:10px;margin-bottom:12px">
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-challenges')" title="Click for guiding questions">
+            <div style="font-size:.58rem;font-weight:700;color:#8B5CF6;margin-bottom:4px">GAPS</div>
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:38px solid #8B5CF6;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+          </div>
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-opps')" title="Click for guiding questions">
+            <div style="font-size:.58rem;font-weight:700;color:#8B5CF6;margin-bottom:4px">RESOURCES</div>
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:38px solid #8B5CF6;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+          </div>
+        </div>
+        <div data-tip="As a young leader involved in a SIP, it is essential to identify the needs of your target group and the areas to improve in your community, in order to plan effective actions." style="position:relative;cursor:help;width:120px;height:104px;clip-path:polygon(0% 0%,100% 0%,50% 100%);background:#4B1A8A;display:flex;align-items:flex-start;justify-content:center;transition:filter .2s" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter=''">
+          <span style="font-size:.62rem;font-weight:800;color:white;text-align:center;line-height:1.25;padding:0 12px;margin-top:10px">ASSESS NEEDS</span>
+        </div>
+        <div style="text-align:center;cursor:pointer;margin-top:8px" onclick="openProf('pf-assess')" title="Click for guiding questions">
+          <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:38px solid #8B5CF6;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+          <div style="font-size:.58rem;font-weight:700;color:#8B5CF6;margin-top:4px">STRENGTHS ↑</div>
+        </div>
+      </div>
+
+      <!-- Step 3: Build relations (UP triangle, single sub-node) -->
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:128px">
+        <div data-tip="Every social action requires effective communication between various groups of people. Communication with reference people in the community is vital to the success of your actions and to understanding your target group's needs." style="position:relative;cursor:help;width:120px;height:104px;clip-path:polygon(50% 0%,100% 100%,0% 100%);background:#1A3A6B;display:flex;align-items:center;justify-content:center;transition:filter .2s" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter=''">
+          <span style="font-size:.62rem;font-weight:800;color:white;text-align:center;line-height:1.25;padding:0 12px;margin-top:30px">BUILD RELATIONS</span>
+        </div>
+        <div style="margin-top:12px;cursor:pointer;text-align:center" onclick="openProf('pf-people')" title="Click for guiding questions">
+          <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:38px solid #5B8FD5;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+          <div style="font-size:.58rem;font-weight:700;color:#5B8FD5;margin-top:4px">KEY PEOPLE</div>
+        </div>
+      </div>
+
+      <!-- Step 4: Collect data (DOWN triangle) -->
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:128px">
+        <div style="display:flex;gap:10px;margin-bottom:12px">
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-data')" title="Click for guiding questions">
+            <div style="font-size:.58rem;font-weight:700;color:#2A7DB5;margin-bottom:4px">SURVEYS</div>
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:38px solid #2A7DB5;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+          </div>
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-data')" title="Click for guiding questions">
+            <div style="font-size:.58rem;font-weight:700;color:#2A7DB5;margin-bottom:4px">INTERVIEWS</div>
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:38px solid #2A7DB5;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+          </div>
+        </div>
+        <div data-tip="The collection and analysis of information allows you to identify relevant themes and problems, understand who is at risk, why, and what can be done about it." style="position:relative;cursor:help;width:120px;height:104px;clip-path:polygon(0% 0%,100% 0%,50% 100%);background:#0B4A7A;display:flex;align-items:flex-start;justify-content:center;transition:filter .2s" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter=''">
+          <span style="font-size:.62rem;font-weight:800;color:white;text-align:center;line-height:1.25;padding:0 12px;margin-top:10px">COLLECT DATA</span>
+        </div>
+        <div style="text-align:center;cursor:pointer;margin-top:8px" onclick="openProf('pf-data')" title="Click for guiding questions">
+          <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:38px solid #2A7DB5;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+          <div style="font-size:.58rem;font-weight:700;color:#2A7DB5;margin-top:4px">OBSERVATIONS ↑</div>
+        </div>
+      </div>
+
+      <!-- Step 5: Identify a solution (UP triangle) -->
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:128px">
+        <div data-tip="Brainstorm ideas and solutions according to the needs you have found. Establish realistic SMART objectives and prepare an effective action plan with your team. Involve your community — and don't forget the resources available to you!" style="position:relative;cursor:help;width:120px;height:104px;clip-path:polygon(50% 0%,100% 100%,0% 100%);background:#1A5A2A;display:flex;align-items:center;justify-content:center;transition:filter .2s" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter=''">
+          <span style="font-size:.62rem;font-weight:800;color:white;text-align:center;line-height:1.25;padding:0 12px;margin-top:30px">IDENTIFY A SOLUTION</span>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-objectives')" title="Click for guiding questions">
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:38px solid #3A9A4A;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+            <div style="font-size:.58rem;font-weight:700;color:#3A9A4A;margin-top:4px">OBJECTIVES</div>
+          </div>
+          <div style="text-align:center;cursor:pointer" onclick="openProf('pf-challenges')" title="Click for guiding questions">
+            <div style="width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:38px solid #3A9A4A;transition:filter .2s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''"></div>
+            <div style="font-size:.58rem;font-weight:700;color:#3A9A4A;margin-top:4px">CHALLENGES</div>
+          </div>
+        </div>
+        <div style="text-align:center;cursor:pointer;margin-top:4px" onclick="openProf('pf-opps')" title="Click for guiding questions">
+          <div style="font-size:.58rem;font-weight:700;color:#3A9A4A">OPPORTUNITIES</div>
+        </div>
+      </div>
+
+    </div>
+    <p style="font-size:.72rem;color:rgba(255,255,255,.6);text-align:center;margin-top:4px">Hover diamonds for description · Click sub-nodes for guiding questions</p>
+  </div>
+
+  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:16px"><strong>Click any dimension</strong> to explore the key questions</p>
   <div class="prof-grid reveal">
     <button class="prof-btn" onclick="toggleProf(this,'pf-define')">Define your community</button>
     <button class="prof-btn" onclick="toggleProf(this,'pf-assess')">Assess needs</button>
@@ -687,44 +788,76 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
     <button class="prof-btn" onclick="toggleProf(this,'pf-challenges')">Challenges</button>
     <button class="prof-btn" onclick="toggleProf(this,'pf-objectives')">Objectives</button>
   </div>
-  <div class="prof-detail" id="pf-define"><strong>Define your community:</strong> Start by drawing the boundaries of your community. Is it geographic, demographic, or interest-based? Be specific — a well-defined community makes your SIP more focused and effective. Avoid assuming homogeneity — every community contains diverse voices.</div>
-  <div class="prof-detail" id="pf-assess"><strong>Assess needs:</strong> Use observations, interviews, and surveys to map what the community lacks. Distinguish between felt needs (what people say they want) and real needs (what analysis reveals). Both matter. Avoid imposing solutions from the outside — co-design with your community.</div>
-  <div class="prof-detail" id="pf-data"><strong>Collect data:</strong> Good data makes a stronger case for your project and helps you measure impact later. Combine qualitative data (stories, quotes) with quantitative data (numbers, statistics). Always be ethical — respect privacy and get consent before sharing people's stories.</div>
-  <div class="prof-detail" id="pf-relate"><strong>Build relations:</strong> Sustainable projects are built on trust. Before launching your SIP, invest time in building authentic relationships with community members, local organisations, and decision-makers. These relationships will support your project through its highs and lows.</div>
-  <div class="prof-detail" id="pf-solve"><strong>Identify a solution:</strong> Once you understand community needs and assets, brainstorm solutions collaboratively. A good SIP solution is specific, feasible, community-owned, and addresses root causes rather than just symptoms. Test your idea before committing fully.</div>
-  <div class="prof-detail" id="pf-territory"><strong>Territory:</strong> Understand the physical spaces your community uses — and which are inaccessible or unsafe for certain groups. Consider also the digital territory: which platforms do community members use, and where do they experience hate or exclusion?</div>
-  <div class="prof-detail" id="pf-population"><strong>Population:</strong> Who belongs to your community? What are the demographics — age, gender, cultural background, socioeconomic status? Understanding diversity within your community helps ensure your SIP genuinely includes those who need it most.</div>
-  <div class="prof-detail" id="pf-values"><strong>Attitudes &amp; Values:</strong> Every community has shared values, beliefs, and norms — some explicit, some unspoken. Understanding these helps you communicate your project in ways that resonate, and identify potential resistance or allies.</div>
-  <div class="prof-detail" id="pf-opps"><strong>Opportunities:</strong> What external factors could support your project? Upcoming events, funding calls, policy changes, media attention, or partnerships with other organisations? Staying aware of the wider context can help you grow your SIP's impact.</div>
-  <div class="prof-detail" id="pf-people"><strong>Key People:</strong> Identify community leaders, influencers, gatekeepers, and champions — people who can open doors, lend credibility, or help mobilise others. Building relationships with key people early is one of the most valuable things you can do.</div>
-  <div class="prof-detail" id="pf-challenges"><strong>Challenges:</strong> Be honest about the obstacles your project will face — lack of funding, community resistance, political barriers, your own capacity. Planning for challenges in advance makes your project more resilient and credible.</div>
-  <div class="prof-detail" id="pf-objectives"><strong>Objectives:</strong> Translate your goals into specific, measurable, achievable, relevant, and time-bound (SMART) objectives. Clear objectives help you stay on track, communicate your vision, and evaluate your impact at the end.</div>
+  <div class="prof-detail" id="pf-define"><strong>Define your community:</strong> Observe and understand your community's structure — it is an important source of social relations and information: beliefs, attitudes, values and common objectives. Ask: who are you trying to help? What do they have in common? Where do they live and meet?</div>
+  <div class="prof-detail" id="pf-assess"><strong>Assess needs:</strong> As a young leader involved in a SIP, it is essential to identify the needs of your target group and the areas to improve in your community, so you can plan effective actions. What does the community lack? What can be improved?</div>
+  <div class="prof-detail" id="pf-data"><strong>Collect data:</strong> The collection and analysis of information allows you to identify relevant themes and problems, understand who is at risk, why, and what can be done. Combine qualitative data (stories, quotes) with quantitative data (numbers, statistics). Always respect privacy and get consent.</div>
+  <div class="prof-detail" id="pf-relate"><strong>Build relations:</strong> Every social action requires effective communication between various groups of people. Communication with reference people in the community is vital to the success of your actions and to understanding your target group's needs. Invest time in building authentic relationships before you launch.</div>
+  <div class="prof-detail" id="pf-solve"><strong>Identify a solution:</strong> Brainstorm ideas and solutions according to the needs you have found. Establish realistic SMART objectives and prepare an effective action plan with your team. Involve the community — and don't forget to make use of available resources.</div>
+  <div class="prof-detail" id="pf-territory"><strong>Territory — Guiding questions:</strong><br>• Where does your target group live and meet?<br>• Are there public spaces in your neighbourhood?<br>• What infrastructure could you use for the implementation of your SIP?</div>
+  <div class="prof-detail" id="pf-population"><strong>Population — Guiding questions:</strong><br>• Who do you want to help?<br>• What cultures exist in your community?<br>• What are the dominant values?<br>• What is the age, gender, cultural background, etc. of the population you want to work with?</div>
+  <div class="prof-detail" id="pf-values"><strong>Attitudes &amp; Values — Guiding questions:</strong><br>• What motivates your community?<br>• How does your community react to and overcome more difficult issues?</div>
+  <div class="prof-detail" id="pf-opps"><strong>Opportunities — Guiding questions:</strong><br>• What opportunities do you identify in your community based on the data you have collected?<br>• How does the community benefit from your SIP?<br>• What resources do you need to achieve your objectives? What is available and accessible?</div>
+  <div class="prof-detail" id="pf-people"><strong>Key People — Guiding questions:</strong><br>• Who are the reference people in your community?<br>• Who can you connect with?<br>• Who can support you in implementing your SIP?</div>
+  <div class="prof-detail" id="pf-challenges"><strong>Challenges — Guiding questions:</strong><br>• What challenges might you encounter?<br>• What risks exist?<br>• How would you overcome them?<br>• Who would you contact to seek support?</div>
+  <div class="prof-detail" id="pf-objectives"><strong>Objectives — Guiding questions:</strong><br>What do you want to achieve with your SIP? Define your <strong>SMART objectives</strong> — for them to be useful, they need to be:<br>• <strong>Specific:</strong> the objectives are clear<br>• <strong>Measurable:</strong> you can evaluate and measure the success and completion of objectives<br>• <strong>Achievable:</strong> the objectives are realistic<br>• <strong>Relevant:</strong> the objectives respond to identified needs<br>• <strong>Time-bound:</strong> set deadlines indicating when objectives will be completed</div>
 
   <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px;margin-top:48px">The Importance of Scale</p>
-  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:14px"><strong>Click each level</strong> to understand how it connects to your work</p>
+  <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:20px">Global issues always have local manifestations. For a young leader, working at community level on big topics means asking the right questions at each scale. <strong>Click each level</strong> to see the guiding questions for that scale.</p>
+
+  <p style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:8px">🌍 Example topic: <span style="color:var(--yellow)">Climate Change</span></p>
+  <p style="font-size:.78rem;color:#e8e8ff;margin-bottom:10px" data-tip="Climate change is one of the biggest challenges humanity faces today. It affects all countries and can have devastating effects on communities and people. Let's try to reduce it — connecting the local scale with the global.">Climate change is one of the biggest challenges humanity faces today. It affects all countries and can have devastating effects on communities and people.</p>
   <div class="scale reveal">
     <div class="scale-row" onclick="toggleScale(this)">
       <div class="sr-lbl">🌍 Global</div>
-      <div class="sr-desc">Challenges affecting the whole planet — climate change, inequality, hate speech, structural racism
-        <div class="sr-extra">Global issues always have local manifestations. Structural racism shapes who gets hired, who faces hate online, in your own community. Your SIP can address a global issue at the local level, creating change that can be replicated elsewhere.</div>
+      <div class="sr-desc">How climate change is transforming the world
+        <div class="sr-extra">• How is climate change transforming the natural world?<br>• Do you notice differences in biodiversity, the marine environment, sea levels, etc.?<br>• Are there social problems related to climate change?</div>
       </div>
     </div>
     <div class="scale-row" onclick="toggleScale(this)">
       <div class="sr-lbl">🗺️ Regional</div>
-      <div class="sr-desc">Problems shared by multiple communities across a region or country
-        <div class="sr-extra">Regional issues connect communities that might not otherwise collaborate. Understanding the regional dimension helps you identify potential partners and advocate for policy changes that go beyond a single neighbourhood.</div>
+      <div class="sr-desc">How different regions are affected
+        <div class="sr-extra">• How are different regions affected by climate change?<br>• Do you think climate change will increase global inequalities?<br>• Do you think government actions are adequate to counter the climate crisis?</div>
       </div>
     </div>
     <div class="scale-row" onclick="toggleScale(this)">
       <div class="sr-lbl">🏘️ Community</div>
-      <div class="sr-desc">Specific issues in your neighbourhood, school or local group
-        <div class="sr-extra">This is where most SIPs start — and where impact is most visible and tangible. Community-level action allows you to build deep relationships, understand nuance, and create change that directly improves people's daily lives.</div>
+      <div class="sr-desc">Changes in your local reality
+        <div class="sr-extra">• Has something changed in your local reality?<br>• Do you notice any differences compared to the past?<br><br>Reflect with your colleagues and community about the daily impact of climate change in your life.</div>
       </div>
     </div>
     <div class="scale-row" onclick="toggleScale(this)">
       <div class="sr-lbl">🧍 Individual</div>
-      <div class="sr-desc">The direct impact on each person's life — where everything starts
-        <div class="sr-extra">Ultimately, social change is about people. Behind every statistic is an individual whose life can be improved. Keeping the individual in focus keeps your project human, ethical, and grounded in real needs.</div>
+      <div class="sr-desc">The impact of your own daily actions
+        <div class="sr-extra">• What is the impact of your daily actions?<br>• Where can you find reliable information on green actions?<br>• Are there habits you can change to respect and preserve the environment?<br><br>Think of practical things you can do in your daily activities to counter the problem.</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:8px;margin-top:28px">🧠 Example topic: <span style="color:var(--yellow)">Mental Health</span></p>
+  <p style="font-size:.78rem;color:#e8e8ff;margin-bottom:10px" data-tip="Millions of people worldwide have mental health problems — the United Nations estimates that one in four people will experience mental health issues during their lifetime. Unresolved mental health problems can have a negative influence at different levels. Let's try to reflect on this.">Millions of people worldwide have mental health problems — the UN estimates one in four people will experience mental health issues during their lifetime.</p>
+  <div class="scale reveal">
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🌍 Global</div>
+      <div class="sr-desc">Social, political and economic factors
+        <div class="sr-extra">• Do you think there are factors that can increase mental health problems?<br>• From your perspective, how do social, political and economic aspects affect mental health?<br>• What decisions should governments adopt to address this issue?</div>
+      </div>
+    </div>
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🗺️ Regional</div>
+      <div class="sr-desc">Unequal exposure across populations and regions
+        <div class="sr-extra">• Do you think some populations are more exposed to mental health crises than others? If so, why?<br>• How do inequalities between regions affect mental health and its treatment?</div>
+      </div>
+    </div>
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🏘️ Community</div>
+      <div class="sr-desc">Taboos, stigmas and access in your community
+        <div class="sr-extra">• Is mental health a taboo in your community? If so, why?<br>• Is it easy to access mental health treatment in your community?<br>• Are there stigmas about mental health problems in your community?</div>
+      </div>
+    </div>
+    <div class="scale-row" onclick="toggleScale(this)">
+      <div class="sr-lbl">🧍 Individual</div>
+      <div class="sr-desc">How community views affect personal openness
+        <div class="sr-extra">• Does the way mental health issues are seen in your community affect how you talk about mental health?<br>• Do you feel comfortable talking about mental health with your friends and/or peers?</div>
       </div>
     </div>
   </div>
@@ -732,25 +865,25 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
   <p style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:8px">Social Impact Project Lifecycle</p>
   <p style="font-size:.85rem;color:#e8e8ff;margin-bottom:14px"><strong>Click each phase</strong> for key questions and tips</p>
   <div class="lifecycle reveal">
-    <div class="lc" onclick="toggleLc(this)">
+    <div class="lc active" onclick="toggleLc(this)">
       <div class="lc-n">01</div><div class="lc-t">Start</div>
-      <div class="lc-d">Everything begins with an idea! Identify a problem and imagine a solution.</div>
-      <div class="lc-x">What problem am I solving? Who is affected? Why does it matter to me? Is there community support? Tip: Don't rush this phase — a well-chosen problem saves enormous effort later.</div>
+      <div class="lc-d">Define the project structure: main objective, target group, resources needed and team. This crucial phase sets the foundation.</div>
+      <div class="lc-x"><strong>Key steps:</strong> Identify community needs → Determine your overall objective and SMART objectives → Clarify budget and time constraints → Establish your team and define roles → Determine when and how community partners will be involved → Contact reference people in your community.</div>
     </div>
     <div class="lc" onclick="toggleLc(this)">
       <div class="lc-n">02</div><div class="lc-t">Planning</div>
-      <div class="lc-d">Define objectives, resources, team and a detailed action plan.</div>
-      <div class="lc-x">What are my SMART objectives? Who is in my team? What resources do I need? What does success look like? Tip: Plan for things to go wrong — they will!</div>
+      <div class="lc-d">Define the steps and actions to achieve your SIP objectives — the "HOW". Establish tasks, milestones, resources, materials and permissions needed.</div>
+      <div class="lc-x"><strong>Key steps:</strong> Decide on milestones → Define tasks and actions → Create a calendar for task assignment → Define your communication strategy to reach other community partners → Identify potential risks and ways to overcome them.</div>
     </div>
-    <div class="lc active" onclick="toggleLc(this)">
+    <div class="lc" onclick="toggleLc(this)">
       <div class="lc-n">03</div><div class="lc-t">Implementation</div>
-      <div class="lc-d">Put the plan into practice, monitor progress and adapt when needed.</div>
-      <div class="lc-x">Are we on track? What is working and what is not? Are team members feeling supported? Regular check-ins with your team and community are essential — do not disappear into execution mode.</div>
+      <div class="lc-d">The key moment — putting the plan into action and keeping the team on track. Monitor progress and adapt as needed.</div>
+      <div class="lc-x"><strong>Key steps:</strong> Take an active role in the realisation of project activities → Keep team members motivated in their tasks → Communicate with partners to inform them about project progress → Monitor progress and challenges encountered → Face risks as they appear → Listen to suggestions and comments from your community.</div>
     </div>
     <div class="lc" onclick="toggleLc(this)">
       <div class="lc-n">04</div><div class="lc-t">Conclusion</div>
-      <div class="lc-d">Evaluate impact, celebrate results and share your learnings.</div>
-      <div class="lc-x">Did we achieve our objectives? What impact did we have? What would we do differently? Tip: Celebrate — even small wins deserve recognition. Then decide: does this project continue, scale, or hand over to the community?</div>
+      <div class="lc-d">Finalise activities, evaluate impact, identify areas for improvement and celebrate with your team.</div>
+      <div class="lc-x"><strong>Key steps:</strong> Prepare evaluation questionnaires → Analyse feedback and prepare a report → Identify areas for improvement for future actions → Communicate externally what was achieved during the development of the SIP → Celebrate the end of the project by valuing the work of the team involved!</div>
     </div>
   </div>
 </section>
@@ -769,16 +902,12 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
       <div class="ax-d">Practical exercises and group dynamics to develop your leadership skills.</div>
       <div class="ax-hint">Click to expand ↓</div>
       <div class="ax-more">
-        A collection of hands-on activities for youth groups, including:
+        A collection of hands-on activities for youth groups, organised around the three pillars of the kit:
         <ul>
-          <li>Icebreakers and community-building games</li>
-          <li>Debate and role-play on hate speech scenarios</li>
-          <li>Digital activism workshops (counter-narrative creation)</li>
-          <li>Needs analysis fieldwork exercises</li>
-          <li>Storytelling and public speaking practice</li>
-          <li>Team dynamics and conflict resolution simulations</li>
+          <li><strong>ME &amp; Others:</strong> The Ideal Young Leader (45 min) — Getting to Know Each Other / Group Agreement (70 min)</li>
+          <li><strong>ME &amp; the Community:</strong> Welcome to My Neighbourhood / Emotional Map (60 min) — Developing a Local Strategy using the GROW Model (45 min)</li>
         </ul>
-        <button class="btn btn-blue" style="font-size:.75rem;padding:8px 14px" onclick="event.stopPropagation();window.open('https://humanactivists.eu/modules/','_blank')">Explore HUMAN Modules ↗</button>
+        <a class="btn btn-yellow" style="font-size:.75rem;padding:8px 14px;display:inline-flex;margin-top:4px" href="HUMAN_Practical_Exercises_EN.pdf" target="_blank" onclick="event.stopPropagation()">Download PDF ↗</a>
       </div>
     </div>
     <div class="annex" onclick="toggleAnnex(this)">
@@ -787,69 +916,69 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
       <div class="ax-d">Know your rights as an active young citizen and the responsibilities that come with leadership.</div>
       <div class="ax-hint">Click to expand ↓</div>
       <div class="ax-more">
-        <strong style="color:var(--white)">Your rights include:</strong>
+        <strong style="color:var(--white)">Your duties:</strong>
         <ul>
-          <li>The right to participate in decisions that affect you</li>
-          <li>The right to a safe and inclusive environment</li>
-          <li>The right to access information and education</li>
-          <li>The right to express your views freely and safely</li>
+          <li>Act as a role model for your peers and community</li>
+          <li>Commit to the project and maintain that commitment to its objectives until the end</li>
+          <li>Stay informed and remain at the forefront of social issues</li>
+          <li>Develop a sense of initiative to carry out activities for and with your community</li>
+          <li>Guide your peers to become active members of their community</li>
+          <li>Collaborate with your team and with local partners (municipalities, associations, sports organisations, etc.)</li>
         </ul>
-        <strong style="color:var(--white)">Your duties include:</strong>
+        <strong style="color:var(--white)">Your rights:</strong>
         <ul>
-          <li>Respecting the rights and dignity of others</li>
-          <li>Acting with integrity and transparency</li>
-          <li>Being accountable to your community</li>
-          <li>Reporting hate speech and discriminatory behaviour</li>
+          <li>Know the resources available for the topics you wish to work on</li>
+          <li>Receive appropriate training and clear guidance to strengthen your skills and knowledge</li>
+          <li>Receive support in developing strong leadership capacities</li>
+          <li>Gain experience in volunteering and team management that can strengthen your CV</li>
+          <li>Build connections with other young leaders at local, national, and European level</li>
         </ul>
+        <a class="btn btn-yellow" style="font-size:.75rem;padding:8px 14px;display:inline-flex;margin-top:4px" href="HUMAN_Entitlements_and_Obligations_EN.pdf" target="_blank" onclick="event.stopPropagation()">Download PDF ↗</a>
       </div>
     </div>
     <div class="annex" onclick="toggleAnnex(this)">
       <div class="ax-icon">✍️</div>
       <div class="ax-t">Participation Agreement</div>
-      <div class="ax-d">A document that formalises your commitment to active participation.</div>
+      <div class="ax-d">A document that formalises your commitment to the HUMAN project and your Social Impact Project.</div>
       <div class="ax-hint">Click to expand ↓</div>
       <div class="ax-more">
-        The agreement covers: your role and responsibilities, expected time commitment, values and code of conduct, confidentiality, and how conflicts will be handled.
+        The agreement is entered into between the HUMAN project and the young leader. It covers: the project's objectives, what the partnership commits to (training, resources, guidance, support), and the participant's commitment to use the kit as guidance for implementing their SIP.
         <br><br>
-        <button class="btn btn-yellow" style="font-size:.75rem;padding:8px 14px" onclick="event.stopPropagation();openModal('m-agreement')">View sample agreement →</button>
+        <a class="btn btn-yellow" style="font-size:.75rem;padding:8px 14px;display:inline-flex" href="HUMAN_Participation_Agreement_EN.pdf" target="_blank" onclick="event.stopPropagation()">Download PDF ↗</a>
+        <button class="btn btn-outline" style="font-size:.75rem;padding:8px 14px;margin-left:6px" onclick="event.stopPropagation();openModal('m-agreement')">Preview →</button>
       </div>
     </div>
   </div>
 
   <div style="margin-top:64px" class="reveal">
-    <div class="eyebrow">Truques e Dicas · Tips &amp; Tricks</div>
-    <h2 style="font-size:1.8rem;margin-bottom:12px">Hard-won wisdom from <em>the field</em></h2>
-    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">These are the things experienced youth leaders wish someone had told them at the start.</p>
+    <div class="eyebrow">Tips &amp; Tricks</div>
+    <h2 style="font-size:1.8rem;margin-bottom:12px">Wisdom for the <em>journey ahead</em></h2>
+    <p style="font-size:.9rem;color:#e8e8ff;line-height:1.75;margin-bottom:28px;max-width:600px">Being a successful youth leader takes time. Don't stress — go step by step. You may not have all the competencies detailed on these pages right now, but you can develop them through others or learn them through practice. Trust your potential!</p>
     <div class="tips-grid">
       <div class="tip-card">
-        <div class="tip-emoji">🔋</div>
-        <div class="tip-title">Protect your energy</div>
-        <div class="tip-body">Burnout is real. Schedule rest as seriously as you schedule meetings. You cannot pour from an empty cup — a tired activist is a less effective one.</div>
+        <div class="tip-emoji">🌱</div>
+        <div class="tip-title">Trust your potential</div>
+        <div class="tip-body">You may not have all the competencies right now, but you can develop them through others or learn them through practice. Trust yourself!</div>
       </div>
       <div class="tip-card">
-        <div class="tip-emoji">🎯</div>
-        <div class="tip-title">Start smaller than you think</div>
-        <div class="tip-body">The best SIPs begin with a tiny, concrete action. A pilot event for 10 people teaches you more than six months of planning. Start, learn, grow.</div>
+        <div class="tip-emoji">👐</div>
+        <div class="tip-title">Be open to your peers</div>
+        <div class="tip-body">Be open to your peers and to others' ideas. You can learn as much from them as they can learn from you.</div>
       </div>
       <div class="tip-card">
-        <div class="tip-emoji">🤝</div>
-        <div class="tip-title">Find your people first</div>
-        <div class="tip-body">Before you launch anything publicly, build a small core team of people who genuinely believe in what you're doing. They'll carry you through the hard moments.</div>
+        <div class="tip-emoji">🔭</div>
+        <div class="tip-title">Find leaders who inspire you</div>
+        <div class="tip-body">Identify other leaders — in your community or beyond — to inspire yourself. You can learn a great deal from others to improve your leadership skills, and even from what NOT to do.</div>
       </div>
       <div class="tip-card">
-        <div class="tip-emoji">📝</div>
-        <div class="tip-title">Document everything</div>
-        <div class="tip-body">Take notes, photos, quotes. Your future funders, partners, and collaborators will want evidence of impact. Your future self will be grateful you kept records.</div>
+        <div class="tip-emoji">📋</div>
+        <div class="tip-title">Evaluate after you lead</div>
+        <div class="tip-body">After leading a group or process, always evaluate your own performance. Reflecting on your leadership will help you understand your limitations, identify your strengths, and find ways to improve.</div>
       </div>
       <div class="tip-card">
-        <div class="tip-emoji">💬</div>
-        <div class="tip-title">Ask, don't assume</div>
-        <div class="tip-body">The communities you want to help know what they need. Ask before you act. The most common mistake in social projects is solving the wrong problem with confidence.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-emoji">🌊</div>
-        <div class="tip-title">Embrace the messy middle</div>
-        <div class="tip-body">Every project goes through a phase where nothing seems to be working. This is normal — not a sign to quit. The breakthrough usually comes just after the hardest moment.</div>
+        <div class="tip-emoji">🔥</div>
+        <div class="tip-title">Find what motivates you</div>
+        <div class="tip-body">Find what motivates you enough to become a youth leader. The <strong style="color:var(--yellow)">Ikigai model</strong> will help you find your purpose and reason to act. <a href="https://savvytokyo.com/ikigai-japanese-concept-finding-purpose-life/" target="_blank" style="color:var(--yellow)">Learn more ↗</a></div>
       </div>
     </div>
   </div>
@@ -894,7 +1023,7 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
       <div class="step-row"><div class="step-badge">2</div><div class="step-rc"><h5>🎭 The Challenge — Name the problem</h5><p>Describe the problem clearly and honestly. Do not minimise it, but do not exaggerate either. Help your audience feel the weight of the issue without overwhelming them.</p></div></div>
       <div class="step-row"><div class="step-badge">3</div><div class="step-rc"><h5>🌟 The Transformation — Show change is possible</h5><p>Share evidence that your approach works — a small pilot, a similar project elsewhere, or your own early results. Hope must be grounded in reality.</p></div></div>
       <div class="step-row"><div class="step-badge">4</div><div class="step-rc"><h5>📣 The Invitation — Ask for something specific</h5><p>End with a clear, specific call to action. "Join us", "Share this", "Fund this", "Volunteer on Saturday". Vague asks get vague responses.</p></div></div>
-      <div class="tip-box">💡 <strong style="color:var(--black)">Tip:</strong> Practice your story out loud. Time it. Aim for 2–3 minutes for a pitch, 8–10 for a presentation. The best stories are the ones that have been told many times.</div>
+      <div class="tip-box">📄 <strong style="color:var(--black)">Want to go deeper?</strong> Download the full storytelling guide: <a href="https://drive.google.com/file/d/1C839DGt4rNcdzQkyquCRijdtxCOh72jI/view" target="_blank" style="color:var(--purple)">How to Build a Powerful Story ↗</a></div>
     </div>
   </div>
 </div>
@@ -903,29 +1032,26 @@ footer{background:var(--white);color:#333;padding:48px 80px;display:grid;grid-te
 <div class="overlay" id="m-agreement" onclick="closeModalOutside(event,'m-agreement')">
   <div class="modal">
     <div class="modal-hd">
-      <div><h3>Sample Participation Agreement</h3><p>Youth Leader RoadMap — HUMAN Project</p></div>
+      <div><h3>Participation Agreement</h3><p>Youth Leader Resource Kit — HUMAN Project</p></div>
       <button class="modal-x" onclick="closeModal('m-agreement')">✕</button>
     </div>
     <div class="modal-bd">
-      <p style="margin-bottom:20px">This agreement is made between the young leader and the facilitating organisation. It is a voluntary commitment built on mutual trust and respect.</p>
-      <h4 style="margin-bottom:8px">As a young leader, I commit to:</h4>
+      <p style="margin-bottom:16px">This Participation Agreement is entered into between the HUMAN project and the undersigned participant.</p>
+      <h4 style="margin-bottom:8px">About the HUMAN project</h4>
+      <p style="margin-bottom:12px">The HUMAN project is co-financed by the EU CERV programme (ref. 101144478 — HUMAN — CERV-2023-EQUAL). Its aim is to provide an innovative model for social inclusion through the active participation of young people in community services via structured Social Impact Projects. The kit covers: ME as a young leader · ME and Others · ME and the Community.</p>
+      <h4 style="margin-bottom:8px">What the partnership commits to</h4>
       <ul>
-        <li>Participating actively and respectfully in all activities</li>
-        <li>Treating all participants with dignity, regardless of background</li>
-        <li>Completing agreed tasks to the best of my ability</li>
-        <li>Communicating openly if I have concerns or need support</li>
-        <li>Upholding the values of inclusion, anti-discrimination, and solidarity</li>
-        <li>Representing the project responsibly in my community</li>
+        <li>Supporting the development of essential knowledge and skills to become changemakers</li>
+        <li>Providing resources that meet the educational needs and goals of young people</li>
+        <li>Sharing practical tips for planning Social Impact Projects</li>
+        <li>Offering self-reflection exercises and tools to assess strengths and areas for improvement</li>
       </ul>
-      <h4 style="margin-bottom:8px">The organisation commits to:</h4>
-      <ul>
-        <li>Providing a safe and inclusive environment for all participants</li>
-        <li>Offering guidance, training, and resources throughout the project</li>
-        <li>Listening to and acting on participant feedback</li>
-        <li>Recognising and celebrating the contributions of young leaders</li>
-        <li>Respecting participant privacy and data protection rights</li>
-      </ul>
-      <div class="tip-box">This is a living document — it can be amended at any time by mutual agreement. The most important thing is that all parties feel genuinely committed to its spirit, not just its letter.</div>
+      <h4 style="margin-bottom:8px">Participant commitment</h4>
+      <p style="margin-bottom:16px"><b>The Participant is committed to the project and willing to use the Youth Leader Resource Kit as a guide for implementing their Social Impact Project. By signing, the Participant understands that achieving the objectives requires collaboration between themselves and the HUMAN project partnership.</b></p>
+      <div class="tip-box">
+        Date and place: ___________________________<br><br>
+        Signature of the young leader: ___________________________
+      </div>
     </div>
   </div>
 </div>
@@ -962,6 +1088,17 @@ document.addEventListener('fullscreenchange', () => {
   document.getElementById('fs-label').textContent = isFs ? 'Exit' : 'Fullscreen';
 });
 
+
+// ─── EXERCISE PANELS ───
+function toggleExercise(id) {
+  const panel = document.getElementById(id);
+  const isOpen = panel.classList.contains('open');
+  document.querySelectorAll('.exercise-panel').forEach(p => p.classList.remove('open'));
+  if (!isOpen) {
+    panel.classList.add('open');
+    setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
+  }
+}
 
 function toggleAcc(id) {
   const item = document.getElementById(id);
@@ -1017,6 +1154,20 @@ function toggleProf(btn, id) {
   if (!isOpen) {
     detail.classList.add('open');
     btn.classList.add('active');
+    setTimeout(() => detail.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
+  }
+}
+// ─── DIAGRAM SUB-NODE shortcut (no button element needed) ───
+function openProf(id) {
+  document.querySelectorAll('.prof-detail').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.prof-btn').forEach(b => b.classList.remove('active'));
+  const detail = document.getElementById(id);
+  if (detail) {
+    detail.classList.add('open');
+    // Highlight matching button if it exists
+    document.querySelectorAll('.prof-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
+    });
     setTimeout(() => detail.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
   }
 }
